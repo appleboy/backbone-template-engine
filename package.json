@@ -1,0 +1,20 @@
+{
+    "author": "Bo-Yi Wu <appleboy.tw@gmail.com> (http://blog.wu-boy.com/)",
+    "name": "backbone-template-engine",
+    "description": "backbone template engine with CoffeeScript, Compass, RequireJS.",
+    "version": "1.0.0",
+    "homepage": "https://github.com/appleboy/backbone-template-engine",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/appleboy/backbone-template-engine.git"
+    },
+    "main": "build/server.js",
+    "engines": {
+        "node": "~0.6.11"
+    },
+    "dependencies": {
+        "express": "3.1.0"
+    },
+    "devDependencies": {},
+    "optionalDependencies": {}
+}
