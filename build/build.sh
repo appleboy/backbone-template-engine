@@ -49,3 +49,5 @@ echo '=> install UglifyJS 2 node-based js compressor.'
 npm install -g uglify-js
 echo '=> install sqwish node-based CSS compressor.'
 npm install -g sqwish
+echo '=> install Handlebars.js template tool.'
+npm install -g handlebars
