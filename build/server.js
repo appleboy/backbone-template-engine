@@ -2,29 +2,25 @@
 (function() {
   var app, express, fs;
 
-  fs = require("fs");
+  fs = require('fs');
 
-  express = require("express");
+  express = require('express');
 
   app = express();
 
   app.use(express["static"](__dirname + '/..'));
 
-  app.use(express.favicon("./favicon.ico"));
+  app.use(express.favicon('./favicon.ico'));
 
   app.use(function(req, res, next) {
     console.log('%s %s', req.method, req.url);
     return next();
   });
 
-  app.get("*", function(req, res) {
-    return fs.createReadStream("./index.html").pipe(res);
+  app.get('*', function(req, res) {
+    return fs.createReadStream('./index.html').pipe(res);
   });
 
-  app.use(app.router);
-
-  app.listen(3000);
-
-  console.log("Server listening on http://localhost:3000");
+  console.log('Server listening on http://localhost:3000');
 
 }).call(this);
