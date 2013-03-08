@@ -1,0 +1,1 @@
+(function(){var a=Handlebars.template,b=Handlebars.templates=Handlebars.templates||{};b.index=a(function(a,b,c,d,e){this.compilerInfo=[2,">= 1.0.0-rc.3"],c=c||a.helpers,e=e||{};var f="",g,h="function",i=this.escapeExpression;return f+="<h1>",(g=c.title)?g=g.call(b,{hash:{},data:e}):(g=b.title,g=typeof g===h?g.apply(b):g),f+=i(g)+"</h1>",f})})()

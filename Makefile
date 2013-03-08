@@ -7,6 +7,9 @@ filetime:=$(shell date '+%Y%m%d%H%M%S')
 all:
 	r.js -o build/self.build.js
 
+template:
+	handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
+
 output: all
 	rm -rf output
 	r.js -o build/app.build.js

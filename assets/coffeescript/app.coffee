@@ -4,8 +4,13 @@ define [
     'underscore',
     'backbone',
     'handlebars',
-    'libs/console'], ($, _, Backbone) ->
+    'libs/console',
+    '../templates/template'], ($, _, Backbone) ->
     initialize = ->
-        console.info 'Welcome to Backbone Template Engine'
+        data = {
+            title: 'Welcome to Backbone Template Engine'
+        }
+        $('body').html(Handlebars.templates.index(data))
+        console.info data.title
 
     initialize: initialize
