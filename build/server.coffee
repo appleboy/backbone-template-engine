@@ -13,4 +13,7 @@ app.use (req, res, next) ->
 app.get '*', (req, res) ->
     fs.createReadStream('./index.html').pipe(res)
 
+app.use(app.router)
+app.listen(3000)
+
 console.log 'Server listening on http://localhost:3000'
