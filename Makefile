@@ -4,7 +4,7 @@
 # Using time as file name
 filetime:=$(shell date '+%Y%m%d%H%M%S')
 
-all:
+all: template
 	r.js -o build/self.build.js
 
 template:
