@@ -1,11 +1,15 @@
-.PHONY: output
+.PHONY: output init template
 
-#
 # Using time as file name
 filetime:=$(shell date '+%Y%m%d%H%M%S')
 
-all: template
+all: init template
 	r.js -o build/self.build.js
+
+init:
+	which bower 1> /dev/null 2&>1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
+	test -d "assets/vendor" || bower install
+	echo "Install bower package compeletely."
 
 template:
 	handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
