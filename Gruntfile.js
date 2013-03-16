@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         exec: {
             build: {
-                command: 'node node_modules/requirejs/bin/r.js -o build/app.build.js'
+                command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js'
             }
         },
         shell: {
@@ -25,9 +25,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('copy-output', function() {
-        grunt.file.mkdir('output');
-    });
-
-    grunt.registerTask('default', ['shell', 'copy-output']);
+    grunt.registerTask('default', ['shell', 'exec']);
 };
