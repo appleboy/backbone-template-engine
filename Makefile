@@ -37,6 +37,7 @@ output: all
 
 clean:
 	rm -rf output
+	rm -rf assets/vendor
 	rm -rf assets/js/main-built.js
 	rm -rf assets/js/main-built.js.map
 	rm -rf assets/js/main-built.js.src
