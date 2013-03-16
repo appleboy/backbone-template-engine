@@ -1,13 +1,7 @@
 module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-shell');
 
     grunt.initConfig({
-        exec: {
-            build: {
-                command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js'
-            }
-        },
         shell: {
             init: {
                 command: 'test -d "assets/vendor" || bower install',
@@ -21,9 +15,15 @@ module.exports = function(grunt) {
             },
             template: {
                 command: 'handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless'
+            },
+            build: {
+                command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js',
+                options: {
+                    stdout: true
+                }
             }
         }
     });
 
-    grunt.registerTask('default', ['shell', 'exec']);
+    grunt.registerTask('default', ['shell']);
 };
