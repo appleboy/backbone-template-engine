@@ -5,7 +5,7 @@ define [
     'backbone',
     'handlebars',
     'libs/console',
-    '../templates/template'], ($, _, Backbone) ->
+    'templates'], ($, _, Backbone) ->
     initialize = ->
         data = {
             title: 'Welcome to Backbone Template Engine'
