@@ -21,5 +21,8 @@
         "grunt-exec": "0.4.x",
         "grunt-cli": "0.1.x"
     },
-    "optionalDependencies": {}
+    "optionalDependencies": {},
+    "scripts": {
+        "grunt": "node_modules/.bin/grunt"
+    }
 }
