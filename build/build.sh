@@ -51,3 +51,6 @@ echo '=> install sqwish node-based CSS compressor.'
 npm install -g sqwish
 echo '=> install Handlebars.js template tool.'
 npm install -g handlebars
+echo '=> install grunt tool.'
+npm install -g grunt
+npm install -g grunt-shell
