@@ -34,6 +34,13 @@
           }
         }
       },
+      uglify: {
+        template: {
+          files: {
+            'assets/templates/template.js': ['assets/templates/template.js']
+          }
+        }
+      },
       connect: {
         server: {
           options: {
@@ -46,7 +53,8 @@
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
-    return grunt.registerTask('default', ['shell', 'handlebars', 'connect:server']);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    return grunt.registerTask('default', ['shell', 'handlebars', 'uglify', 'connect:server']);
   };
 
 }).call(this);

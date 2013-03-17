@@ -22,6 +22,10 @@ module.exports = (grunt) ->
             compile:
                 files:
                     'assets/templates/template.js': ['assets/templates/*.handlebars']
+        uglify:
+            template:
+                files:
+                    'assets/templates/template.js': ['assets/templates/template.js']
         connect:
             server:
                 options:
@@ -32,5 +36,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
+    grunt.loadNpmTasks 'grunt-contrib-uglify'
 
-    grunt.registerTask 'default', ['shell', 'handlebars', 'connect:server']
+    grunt.registerTask 'default', ['shell', 'handlebars', 'uglify', 'connect:server']
