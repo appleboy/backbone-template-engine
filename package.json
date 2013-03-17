@@ -1,7 +1,7 @@
 {
     "author": "Bo-Yi Wu <appleboy.tw@gmail.com> (http://blog.wu-boy.com/)",
     "name": "backbone-template-engine",
-    "description": "backbone template engine with CoffeeScript, Compass, RequireJS.",
+    "description": "backbone template engine with CoffeeScript, Compass, RequireJS, Handlebars template engine.",
     "version": "1.0.0",
     "homepage": "https://github.com/appleboy/backbone-template-engine",
     "repository": {
