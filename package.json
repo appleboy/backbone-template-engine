@@ -19,7 +19,9 @@
     "devDependencies": {
         "grunt": "0.4.x",
         "grunt-cli": "0.1.x",
-        "grunt-shell": "0.2.x"
+        "grunt-shell": "0.2.x",
+        "grunt-contrib-connect": "~0.1.2",
+        "grunt-contrib-handlebars": "~0.5.8"
     },
     "optionalDependencies": {},
     "scripts": {

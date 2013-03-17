@@ -1,5 +1,4 @@
 module.exports = (grunt) ->
-    grunt.loadNpmTasks('grunt-shell')
 
     # Project configuration
     grunt.initConfig
@@ -17,5 +16,23 @@ module.exports = (grunt) ->
                 command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js'
                 options:
                     stdout: true
+        handlebars:
+            options:
+                namespace: 'Handlebars.templates'
+                processName: (filename) ->
+                    return filename.replace(/assets\/templates\/(.*)\.handlebars$/i, '$1')
+            compile:
+                files:
+                    'assets/templates/template.js': ['assets/templates/*.handlebars']
+        connect:
+            server:
+                options:
+                    port: 9001
+                    base: '.'
 
-    grunt.registerTask('default', ['shell'])
+    # Dependencies
+    grunt.loadNpmTasks 'grunt-shell'
+    grunt.loadNpmTasks 'grunt-contrib-connect'
+    grunt.loadNpmTasks 'grunt-contrib-handlebars'
+
+    grunt.registerTask 'default', ['shell', 'handlebars', 'connect:server']

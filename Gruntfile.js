@@ -2,7 +2,6 @@
 (function() {
 
   module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-shell');
     grunt.initConfig({
       shell: {
         init: {
@@ -24,9 +23,33 @@
             stdout: true
           }
         }
+      },
+      handlebars: {
+        options: {
+          namespace: 'Handlebars.templates',
+          processName: function(filename) {
+            return filename.replace(/assets\/templates\/(.*)\.handlebars$/i, '$1');
+          }
+        },
+        compile: {
+          files: {
+            'assets/templates/template.js': ['assets/templates/*.handlebars']
+          }
+        }
+      },
+      connect: {
+        server: {
+          options: {
+            port: 9001,
+            base: '.'
+          }
+        }
       }
     });
-    return grunt.registerTask('default', ['shell']);
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
+    return grunt.registerTask('default', ['shell', 'handlebars', 'connect:server']);
   };
 
 }).call(this);
