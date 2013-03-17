@@ -3,5 +3,6 @@ assets/vendor/*
 assets/js/main-built.js
 assets/js/main-built.js.map
 assets/js/main-built.js.src
+assets/templates/template.js
 output/
 node_modules/
