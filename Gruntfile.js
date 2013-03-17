@@ -14,9 +14,6 @@
             }
           }
         },
-        template: {
-          command: 'handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless'
-        },
         build: {
           command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js',
           options: {
