@@ -38,4 +38,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
 
-    grunt.registerTask 'default', ['shell', 'handlebars', 'uglify', 'connect:server']
+    grunt.registerTask 'default', ['handlebars', 'uglify', 'shell', 'connect:server']
