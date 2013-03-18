@@ -10,6 +10,7 @@ init:
 	which bower 1> /dev/null 2&>1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
 	test -d "assets/vendor" || bower install
 	echo "Install bower package compeletely."
+	npm install
 
 template:
 	handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
@@ -39,6 +40,7 @@ clean:
 	rm -rf output
 	rm -rf node_modules
 	rm -rf assets/vendor
+	rm -rf assets/templates/template.js
 	rm -rf assets/js/main-built.js
 	rm -rf assets/js/main-built.js.map
 	rm -rf assets/js/main-built.js.src
