@@ -8,7 +8,7 @@ define [
     'templates'], ($, _, Backbone) ->
     initialize = ->
         data = {
-            title: 'Welcome to Backbone Template Engine'
+            title: 'Welcome to Backbone Template Engine.'
         }
         $('body').html(Handlebars.templates.index(data))
         console.info data.title
