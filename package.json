@@ -26,10 +26,14 @@
         "grunt-contrib-uglify": "latest",
         "grunt-regarde": "latest",
         "grunt-contrib-livereload": "latest",
-        "grunt-contrib-compass": "latest"
+        "grunt-contrib-compass": "latest",
+        "grunt-contrib-coffee": "latest"
     },
     "optionalDependencies": {},
     "scripts": {
         "grunt": "node_modules/.bin/grunt"
+    },
+    "engines": {
+        "node" : ">= 0.8.0"
     }
 }

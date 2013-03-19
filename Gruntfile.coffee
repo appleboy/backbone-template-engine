@@ -45,6 +45,10 @@ module.exports = (grunt) ->
                 files: '**/*.js',
                 tasks: ['livereload']
                 events: true
+            coffee:
+                files: '**/*.coffee',
+                tasks: ['coffee']
+                events: true
             handlebars:
                 files: '**/*.handlebars',
                 tasks: ['handlebars', 'livereload']
@@ -55,6 +59,20 @@ module.exports = (grunt) ->
                     config: 'assets/config.rb'
                     sassDir: 'assets/sass'
                     cssDir : 'assets/css'
+        coffee:
+            app:
+                expand: true,
+                cwd: 'assets/coffeescript/',
+                src: ['**/*.coffee'],
+                dest: 'assets/js/',
+                ext: '.js'
+                options:
+                    bare: true
+            grunt:
+                files:
+                    'Gruntfile.js': 'Gruntfile.coffee'
+                options:
+                    bare: true
 
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
@@ -74,5 +92,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-livereload'
     grunt.loadNpmTasks 'grunt-contrib-compass'
+    grunt.loadNpmTasks 'grunt-contrib-coffee'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']
