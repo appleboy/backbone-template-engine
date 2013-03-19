@@ -25,7 +25,8 @@
         "grunt-contrib-handlebars": "~0.5.8",
         "grunt-contrib-uglify": "latest",
         "grunt-regarde": "latest",
-        "grunt-contrib-livereload": "latest"
+        "grunt-contrib-livereload": "latest",
+        "grunt-contrib-compass": "latest"
     },
     "optionalDependencies": {},
     "scripts": {

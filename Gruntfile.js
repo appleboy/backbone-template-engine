@@ -49,18 +49,42 @@ module.exports = function(grunt) {
       }
     },
     regarde: {
+      scss: {
+        files: ['**/*.scss'],
+        tasks: ['compass'],
+        events: true
+      },
+      css: {
+        files: ['**/*.css'],
+        tasks: ['livereload'],
+        events: true
+      },
       js: {
         files: '**/*.js',
-        tasks: ['livereload']
+        tasks: ['livereload'],
+        events: true
       },
       handlebars: {
         files: '**/*.handlebars',
-        tasks: ['handlebars', 'livereload']
+        tasks: ['handlebars', 'livereload'],
+        events: true
+      }
+    },
+    compass: {
+      dist: {
+        options: {
+          config: 'assets/config.rb',
+          sassDir: 'assets/sass',
+          cssDir: 'assets/css'
+        }
       }
     }
   });
   grunt.event.on('watch', function(action, filepath) {
     return grunt.log.writeln(filepath + ' has ' + action);
+  });
+  grunt.event.on('regarde:file', function(status, name, filepath, tasks, spawn) {
+    return grunt.log.writeln('File ' + filepath + ' ' + status + '. Tasks: ' + tasks);
   });
   grunt.registerTask('init', function() {
     grunt.log.writeln('Initial project');
@@ -72,5 +96,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-livereload');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   return grunt.registerTask('default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']);
 };

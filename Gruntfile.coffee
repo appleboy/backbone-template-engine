@@ -33,15 +33,34 @@ module.exports = (grunt) ->
                     port: 9001
                     base: '.'
         regarde:
+            scss:
+                files: ['**/*.scss'],
+                tasks: ['compass']
+                events: true
+            css:
+                files: ['**/*.css'],
+                tasks: ['livereload']
+                events: true
             js:
                 files: '**/*.js',
                 tasks: ['livereload']
+                events: true
             handlebars:
                 files: '**/*.handlebars',
                 tasks: ['handlebars', 'livereload']
+                events: true
+        compass:
+            dist:
+                options:
+                    config: 'assets/config.rb'
+                    sassDir: 'assets/sass'
+                    cssDir : 'assets/css'
 
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
+
+    grunt.event.on 'regarde:file', (status, name, filepath, tasks, spawn) ->
+        grunt.log.writeln 'File ' + filepath + ' ' + status + '. Tasks: ' + tasks
 
     grunt.registerTask 'init', () ->
         grunt.log.writeln('Initial project');
@@ -54,5 +73,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-livereload'
+    grunt.loadNpmTasks 'grunt-contrib-compass'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']
