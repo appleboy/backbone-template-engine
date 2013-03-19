@@ -3,8 +3,8 @@ module.exports = (grunt) ->
     # Project configuration
     grunt.initConfig
         shell:
-            init:
-                command: 'test -d "assets/vendor" || bower install'
+            bower:
+                command: 'node node_modules/.bin/bower install'
                 options:
                     stdout: true
                     callback: (err, stdout, stderr, cb) ->
@@ -40,6 +40,10 @@ module.exports = (grunt) ->
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
 
+    grunt.registerTask 'init', () ->
+        grunt.log.writeln('Initial project');
+        grunt.file.exists('assets/vendor') || grunt.task.run('shell:bower')
+
     # Dependencies
     grunt.loadNpmTasks 'grunt-regarde'
     grunt.loadNpmTasks 'grunt-shell'
@@ -48,4 +52,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-livereload'
 
-    grunt.registerTask 'default', ['handlebars', 'uglify', 'shell', 'livereload-start', 'connect', 'regarde']
+    grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']
