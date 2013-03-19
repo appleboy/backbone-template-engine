@@ -52,6 +52,10 @@ module.exports = function(grunt) {
       js: {
         files: '**/*.js',
         tasks: ['livereload']
+      },
+      handlebars: {
+        files: '**/*.handlebars',
+        tasks: ['handlebars', 'livereload']
       }
     }
   });

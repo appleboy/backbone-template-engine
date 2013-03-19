@@ -36,6 +36,9 @@ module.exports = (grunt) ->
             js:
                 files: '**/*.js',
                 tasks: ['livereload']
+            handlebars:
+                files: '**/*.handlebars',
+                tasks: ['handlebars', 'livereload']
 
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
