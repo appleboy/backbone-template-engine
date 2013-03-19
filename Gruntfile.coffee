@@ -27,15 +27,25 @@ module.exports = (grunt) ->
                 files:
                     'assets/templates/template.js': ['assets/templates/template.js']
         connect:
-            server:
+            livereload:
                 options:
+                    hostname: '0.0.0.0'
                     port: 9001
                     base: '.'
+        regarde:
+            js:
+                files: '**/*.js',
+                tasks: ['livereload']
+
+    grunt.event.on 'watch', (action, filepath) ->
+        grunt.log.writeln filepath + ' has ' + action
 
     # Dependencies
+    grunt.loadNpmTasks 'grunt-regarde'
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
+    grunt.loadNpmTasks 'grunt-contrib-livereload'
 
-    grunt.registerTask 'default', ['handlebars', 'uglify', 'shell', 'connect:server']
+    grunt.registerTask 'default', ['handlebars', 'uglify', 'shell', 'livereload-start', 'connect', 'regarde']
