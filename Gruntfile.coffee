@@ -46,6 +46,10 @@ module.exports = (grunt) ->
                     port: 9001
                     base: '.'
         regarde:
+            html:
+                files: ['**/*.html', '**/*.htm']
+                tasks: ['livereload']
+                events: true
             scss:
                 files: ['**/*.scss'],
                 tasks: ['compass']

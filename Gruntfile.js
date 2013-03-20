@@ -68,6 +68,11 @@ module.exports = function(grunt) {
       }
     },
     regarde: {
+      html: {
+        files: ['**/*.html', '**/*.htm'],
+        tasks: ['livereload'],
+        events: true
+      },
       scss: {
         files: ['**/*.scss'],
         tasks: ['compass'],
