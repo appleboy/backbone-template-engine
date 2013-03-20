@@ -87,6 +87,8 @@ module.exports = (grunt) ->
                 options:
                     bare: true
         clean:
+            options:
+                force: true
             js: 'output/assets/js'
             release: [
                 'output/package.json'
@@ -104,12 +106,12 @@ module.exports = (grunt) ->
             ]
             cleanup: [
                 'output'
-                'node_modules'
                 'assets/vendor'
                 'assets/templates/template.js'
                 'assets/js/main-built.js'
                 'assets/js/main-built.js.map'
                 'assets/js/main-built.js.src'
+                'node_modules'
             ]
         copy:
             release:
