@@ -42,7 +42,6 @@ module.exports = (grunt) ->
         connect:
             livereload:
                 options:
-                    hostname: '0.0.0.0'
                     port: 9001
                     base: '.'
         regarde:
