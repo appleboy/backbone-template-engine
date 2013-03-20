@@ -1,20 +1,39 @@
 module.exports = function(grunt) {
+  var filetime;
+
+  filetime = Date.now();
   grunt.initConfig({
     shell: {
       bower: {
         command: 'node node_modules/.bin/bower install',
         options: {
           stdout: true,
+          stderr: true,
           callback: function(err, stdout, stderr, cb) {
             console.log('Install bower package compeletely.');
             return cb();
           }
         }
       },
+      template: {
+        command: 'node node_modules/.bin/handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless',
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      },
       build: {
         command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js',
         options: {
-          stdout: true
+          stdout: true,
+          stderr: true
+        }
+      },
+      output: {
+        command: 'node node_modules/requirejs/bin/r.js -o build/app.build.js',
+        options: {
+          stdout: true,
+          stderr: true
         }
       }
     },
@@ -102,6 +121,42 @@ module.exports = function(grunt) {
           bare: true
         }
       }
+    },
+    clean: {
+      js: 'output/assets/js',
+      release: ['output/package.json', 'output/build.txt', 'output/component.json', 'output/Makefile', 'output/README.mkd', 'output/build', 'output/assets/coffeescript', 'output/assets/sass', 'output/assets/config.rb', 'output/assets/vendor', 'output/assets/templates', 'output/Gruntfile*'],
+      cleanup: ['output', 'node_modules', 'assets/vendor', 'assets/templates/template.js', 'assets/js/main-built.js', 'assets/js/main-built.js.map', 'assets/js/main-built.js.src']
+    },
+    copy: {
+      release: {
+        files: [
+          {
+            src: '.htaccess',
+            dest: 'output/'
+          }, {
+            src: 'output/assets/vendor/requirejs/require.js',
+            dest: 'output/assets/js/require.js'
+          }, {
+            src: 'assets/js/main-built.js',
+            dest: 'output/assets/js/' + filetime + '.js'
+          }
+        ]
+      }
+    },
+    replace: {
+      release: {
+        src: 'output/index.html',
+        dest: 'output/index.html',
+        replacements: [
+          {
+            from: 'js/main',
+            to: 'js/' + filetime
+          }, {
+            from: 'vendor/requirejs/',
+            to: 'js/'
+          }
+        ]
+      }
     }
   });
   grunt.event.on('watch', function(action, filepath) {
@@ -112,7 +167,16 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('init', function() {
     grunt.log.writeln('Initial project');
-    return grunt.file.exists('assets/vendor') || grunt.task.run('shell:bower');
+    return (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
+  });
+  grunt.registerTask('publish', function() {
+    grunt.log.writeln('deploy project');
+    (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
+    grunt.task.run(['shell:template', 'shell:build', 'shell:output', 'clean:js']);
+    grunt.file.mkdir('output/assets/js');
+    grunt.task.run('copy:release');
+    grunt.task.run('replace:release');
+    return grunt.task.run('clean:release');
   });
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-shell');
@@ -122,5 +186,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
-  return grunt.registerTask('default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']);
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-text-replace');
+  return grunt.registerTask('default', ['init', 'handlebars', 'uglify', 'livereload-start', 'connect', 'regarde']);
 };

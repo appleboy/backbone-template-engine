@@ -1,5 +1,6 @@
 module.exports = (grunt) ->
-
+    # build time
+    filetime = Date.now();
     # Project configuration
     grunt.initConfig
         shell:
@@ -7,13 +8,25 @@ module.exports = (grunt) ->
                 command: 'node node_modules/.bin/bower install'
                 options:
                     stdout: true
+                    stderr: true
                     callback: (err, stdout, stderr, cb) ->
                         console.log('Install bower package compeletely.')
                         cb()
+            template:
+                command: 'node node_modules/.bin/handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless'
+                options:
+                    stdout: true
+                    stderr: true
             build:
                 command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js'
                 options:
                     stdout: true
+                    stderr: true
+            output:
+                command: 'node node_modules/requirejs/bin/r.js -o build/app.build.js'
+                options:
+                    stdout: true
+                    stderr: true
         handlebars:
             options:
                 namespace: 'Handlebars.templates'
@@ -73,6 +86,52 @@ module.exports = (grunt) ->
                     'Gruntfile.js': 'Gruntfile.coffee'
                 options:
                     bare: true
+        clean:
+            js: 'output/assets/js'
+            release: [
+                'output/package.json'
+                'output/build.txt'
+                'output/component.json'
+                'output/Makefile'
+                'output/README.mkd'
+                'output/build'
+                'output/assets/coffeescript'
+                'output/assets/sass'
+                'output/assets/config.rb'
+                'output/assets/vendor'
+                'output/assets/templates'
+                'output/Gruntfile*'
+            ]
+            cleanup: [
+                'output'
+                'node_modules'
+                'assets/vendor'
+                'assets/templates/template.js'
+                'assets/js/main-built.js'
+                'assets/js/main-built.js.map'
+                'assets/js/main-built.js.src'
+            ]
+        copy:
+            release:
+                files: [
+                    {src: '.htaccess', dest: 'output/'}
+                    {src: 'output/assets/vendor/requirejs/require.js', dest: 'output/assets/js/require.js'}
+                    {src: 'assets/js/main-built.js', dest: 'output/assets/js/' + filetime + '.js'}
+                ]
+        replace:
+            release:
+                src: 'output/index.html'
+                dest: 'output/index.html'
+                replacements: [
+                    {
+                        from: 'js/main'
+                        to: 'js/' + filetime
+                    },
+                    {
+                        from: 'vendor/requirejs/'
+                        to: 'js/'
+                    }
+                ]
 
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
@@ -81,8 +140,17 @@ module.exports = (grunt) ->
         grunt.log.writeln 'File ' + filepath + ' ' + status + '. Tasks: ' + tasks
 
     grunt.registerTask 'init', () ->
-        grunt.log.writeln('Initial project');
-        grunt.file.exists('assets/vendor') || grunt.task.run('shell:bower')
+        grunt.log.writeln 'Initial project'
+        (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
+
+    grunt.registerTask 'publish', () ->
+        grunt.log.writeln 'deploy project'
+        (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
+        grunt.task.run ['shell:template', 'shell:build', 'shell:output', 'clean:js']
+        grunt.file.mkdir 'output/assets/js'
+        grunt.task.run 'copy:release'
+        grunt.task.run 'replace:release'
+        grunt.task.run 'clean:release'
 
     # Dependencies
     grunt.loadNpmTasks 'grunt-regarde'
@@ -93,5 +161,8 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-livereload'
     grunt.loadNpmTasks 'grunt-contrib-compass'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
+    grunt.loadNpmTasks 'grunt-contrib-copy'
+    grunt.loadNpmTasks 'grunt-contrib-clean'
+    grunt.loadNpmTasks 'grunt-text-replace'
 
-    grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'shell:build', 'livereload-start', 'connect', 'regarde']
+    grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'livereload-start', 'connect', 'regarde']

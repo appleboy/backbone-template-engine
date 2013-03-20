@@ -15,7 +15,8 @@
     "dependencies": {
         "requirejs": "latest",
         "bower": "latest",
-        "express": "3.1.0"
+        "handlebars": "latest",
+        "express": "latest"
     },
     "devDependencies": {
         "grunt": "0.4.x",
@@ -27,7 +28,10 @@
         "grunt-regarde": "latest",
         "grunt-contrib-livereload": "latest",
         "grunt-contrib-compass": "latest",
-        "grunt-contrib-coffee": "latest"
+        "grunt-contrib-coffee": "latest",
+        "grunt-contrib-copy": "latest",
+        "grunt-text-replace": "latest",
+        "grunt-contrib-clean": "latest"
     },
     "optionalDependencies": {},
     "scripts": {
