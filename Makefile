@@ -8,10 +8,10 @@ all: init template
 	r.js -o build/self.build.js
 
 init:
-	which bower 1> /dev/null 2&>1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
-	test -d "assets/vendor" || bower install
-	echo "Install bower package compeletely."
-	npm install
+	@which bower 1> /dev/null 2>&1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
+	@test -d "assets/vendor" || bower install
+	@echo "Install bower package compeletely."
+	@npm install
 
 template:
 	for file in $(shell find assets/templates/ -type f -name '*.handlebars'); \
