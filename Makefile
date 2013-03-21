@@ -14,12 +14,14 @@ init:
 	@npm install
 
 template:
+	-mkdir assets/templates/output
 	for file in $(shell find assets/templates/ -type f -name '*.handlebars'); \
 	do \
-		java -jar build/htmlcompressor-1.5.3.jar --remove-intertag-spaces --compress-js -o $$file.min $$file; \
+		name=`basename $$file`; \
+		java -jar build/htmlcompressor-1.5.3.jar --remove-intertag-spaces --compress-js -o assets/templates/output/$$name $$file; \
 	done
-	handlebars assets/templates/*.min -m -f assets/templates/template.js -k each -k if -k unless
-	find assets/templates/ -type f -name '*.min' -delete
+	handlebars assets/templates/output/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
+	@rm -rf assets/templates/output
 
 output: all
 	rm -rf output
