@@ -1,4 +1,4 @@
-.PHONY: output init template
+.PHONY: output init template css build
 
 # Using time as file name
 filetime:=$(shell date '+%Y%m%d%H%M%S')
@@ -23,9 +23,17 @@ template:
 	handlebars assets/templates/output/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
 	@rm -rf assets/templates/output
 
-output: all
+css:
+	for file in $(shell find output/assets/css/ -type f -name '*.css'); \
+	do \
+		sqwish $$file -o $$file; \
+	done
+
+build: all
 	rm -rf output
 	r.js -o build/app.build.js
+
+output: build css
 	rm -rf output/assets/js/*
 	cp -r .htaccess output/
 	cp -r output/assets/vendor/requirejs/require.js output/assets/js/
