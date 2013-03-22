@@ -102,7 +102,8 @@ module.exports = function(grunt) {
         options: {
           config: 'assets/config.rb',
           sassDir: 'assets/sass',
-          cssDir: 'assets/css'
+          cssDir: 'assets/css',
+          outputStyle: 'nested'
         }
       }
     },

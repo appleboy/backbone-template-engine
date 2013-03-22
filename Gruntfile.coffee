@@ -75,6 +75,7 @@ module.exports = (grunt) ->
                     config: 'assets/config.rb'
                     sassDir: 'assets/sass'
                     cssDir : 'assets/css'
+                    outputStyle: 'nested'
         coffee:
             app:
                 expand: true,
