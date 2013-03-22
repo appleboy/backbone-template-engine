@@ -29,7 +29,7 @@ module.exports = function(grunt) {
           stderr: true
         }
       },
-      output: {
+      release: {
         command: 'node node_modules/requirejs/bin/r.js -o build/app.build.js',
         options: {
           stdout: true,
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
       },
       scss: {
         files: ['**/*.scss'],
-        tasks: ['compass'],
+        tasks: ['compass:dev'],
         events: true
       },
       css: {
@@ -98,12 +98,22 @@ module.exports = function(grunt) {
       }
     },
     compass: {
-      dist: {
+      dev: {
         options: {
           config: 'assets/config.rb',
           sassDir: 'assets/sass',
           cssDir: 'assets/css',
           outputStyle: 'nested'
+        }
+      },
+      release: {
+        options: {
+          force: true,
+          config: 'output/assets/config.rb',
+          sassDir: 'output/assets/sass',
+          cssDir: 'output/assets/css',
+          outputStyle: 'compressed',
+          environment: 'production'
         }
       }
     },
@@ -177,10 +187,10 @@ module.exports = function(grunt) {
     grunt.log.writeln('Initial project');
     return (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
   });
-  grunt.registerTask('publish', function() {
+  grunt.registerTask('release', function() {
     grunt.log.writeln('deploy project');
     (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
-    grunt.task.run(['shell:template', 'shell:build', 'shell:output', 'clean:js']);
+    grunt.task.run(['shell:template', 'shell:build', 'shell:release', 'compass:release', 'clean:js']);
     grunt.file.mkdir('output/assets/js');
     grunt.task.run('copy:release');
     grunt.task.run('replace:release');

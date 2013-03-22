@@ -22,7 +22,7 @@ module.exports = (grunt) ->
                 options:
                     stdout: true
                     stderr: true
-            output:
+            release:
                 command: 'node node_modules/requirejs/bin/r.js -o build/app.build.js'
                 options:
                     stdout: true
@@ -51,7 +51,7 @@ module.exports = (grunt) ->
                 events: true
             scss:
                 files: ['**/*.scss'],
-                tasks: ['compass']
+                tasks: ['compass:dev']
                 events: true
             css:
                 files: ['**/*.css'],
@@ -70,12 +70,20 @@ module.exports = (grunt) ->
                 tasks: ['handlebars', 'livereload']
                 events: true
         compass:
-            dist:
+            dev:
                 options:
                     config: 'assets/config.rb'
                     sassDir: 'assets/sass'
                     cssDir : 'assets/css'
                     outputStyle: 'nested'
+            release:
+                options:
+                    force: true
+                    config: 'output/assets/config.rb'
+                    sassDir: 'output/assets/sass'
+                    cssDir : 'output/assets/css'
+                    outputStyle: 'compressed'
+                    environment: 'production'
         coffee:
             app:
                 expand: true,
@@ -149,10 +157,10 @@ module.exports = (grunt) ->
         grunt.log.writeln 'Initial project'
         (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
 
-    grunt.registerTask 'publish', () ->
+    grunt.registerTask 'release', () ->
         grunt.log.writeln 'deploy project'
         (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
-        grunt.task.run ['shell:template', 'shell:build', 'shell:output', 'clean:js']
+        grunt.task.run ['shell:template', 'shell:build', 'shell:release', 'compass:release', 'clean:js']
         grunt.file.mkdir 'output/assets/js'
         grunt.task.run 'copy:release'
         grunt.task.run 'replace:release'
