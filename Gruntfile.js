@@ -100,18 +100,15 @@ module.exports = function(grunt) {
     compass: {
       dev: {
         options: {
-          config: 'assets/config.rb',
-          sassDir: 'assets/sass',
-          cssDir: 'assets/css',
-          outputStyle: 'nested'
+          basePath: 'assets',
+          config: 'assets/config.rb'
         }
       },
       release: {
         options: {
           force: true,
+          basePath: 'output/assets',
           config: 'output/assets/config.rb',
-          sassDir: 'output/assets/sass',
-          cssDir: 'output/assets/css',
           outputStyle: 'compressed',
           environment: 'production'
         }

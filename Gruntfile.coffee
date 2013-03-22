@@ -72,16 +72,13 @@ module.exports = (grunt) ->
         compass:
             dev:
                 options:
+                    basePath: 'assets'
                     config: 'assets/config.rb'
-                    sassDir: 'assets/sass'
-                    cssDir : 'assets/css'
-                    outputStyle: 'nested'
             release:
                 options:
                     force: true
+                    basePath: 'output/assets'
                     config: 'output/assets/config.rb'
-                    sassDir: 'output/assets/sass'
-                    cssDir : 'output/assets/css'
                     outputStyle: 'compressed'
                     environment: 'production'
         coffee:
