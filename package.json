@@ -9,9 +9,6 @@
         "url": "git://github.com/appleboy/backbone-template-engine.git"
     },
     "main": "build/server.js",
-    "engines": {
-        "node": "~0.6.11"
-    },
     "dependencies": {
         "requirejs": "latest",
         "bower": "latest",
@@ -20,11 +17,10 @@
     },
     "devDependencies": {
         "grunt": "0.4.x",
-        "grunt-cli": "0.1.x",
-        "grunt-shell": "0.2.x",
-        "grunt-contrib-connect": "~0.1.2",
-        "grunt-contrib-handlebars": "~0.5.8",
-        "grunt-contrib-uglify": "latest",
+        "grunt-cli": "latest",
+        "grunt-shell": "latest",
+        "grunt-contrib-connect": "latest",
+        "grunt-contrib-handlebars": "latest",
         "grunt-regarde": "latest",
         "grunt-contrib-livereload": "latest",
         "grunt-contrib-compass": "latest",

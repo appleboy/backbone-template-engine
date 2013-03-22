@@ -50,13 +50,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    uglify: {
-      template: {
-        files: {
-          'assets/templates/template.js': ['assets/templates/template.js']
-        }
-      }
-    },
     connect: {
       livereload: {
         options: {
@@ -197,12 +190,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-text-replace');
-  return grunt.registerTask('default', ['init', 'handlebars', 'uglify', 'livereload-start', 'connect', 'regarde']);
+  return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };

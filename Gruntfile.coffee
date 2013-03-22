@@ -35,10 +35,6 @@ module.exports = (grunt) ->
             compile:
                 files:
                     'assets/templates/template.js': ['assets/templates/*.handlebars']
-        uglify:
-            template:
-                files:
-                    'assets/templates/template.js': ['assets/templates/template.js']
         connect:
             livereload:
                 options:
@@ -168,7 +164,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
-    grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-livereload'
     grunt.loadNpmTasks 'grunt-contrib-compass'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -176,4 +171,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-clean'
     grunt.loadNpmTasks 'grunt-text-replace'
 
-    grunt.registerTask 'default', ['init', 'handlebars', 'uglify', 'livereload-start', 'connect', 'regarde']
+    grunt.registerTask 'default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']
