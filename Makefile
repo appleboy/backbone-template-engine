@@ -14,14 +14,14 @@ init:
 	@npm install
 
 template:
-	-mkdir assets/templates/output
+	-mkdir assets/tmp
 	for file in $(shell find assets/templates/ -type f -name '*.handlebars'); \
 	do \
 		name=`basename $$file`; \
-		java -jar build/htmlcompressor-1.5.3.jar --remove-intertag-spaces --compress-js -o assets/templates/output/$$name $$file; \
+		java -jar build/htmlcompressor-1.5.3.jar --remove-intertag-spaces --compress-js -o assets/tmp/$$name $$file; \
 	done
-	handlebars assets/templates/output/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
-	@rm -rf assets/templates/output
+	handlebars assets/tmp/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless
+	@rm -rf assets/tmp
 
 css:
 	for file in $(shell find output/assets/css/ -type f -name '*.css'); \
@@ -33,7 +33,7 @@ build: all
 	rm -rf output
 	r.js -o build/app.build.js
 
-output: build css template
+output: template build css
 	rm -rf output/assets/js/*
 	cp -r .htaccess output/
 	cp -r output/assets/vendor/requirejs/require.js output/assets/js/
@@ -56,6 +56,7 @@ clean:
 	rm -rf output
 	rm -rf node_modules
 	rm -rf assets/vendor
+	rm -rf assets/tmp
 	rm -rf assets/templates/template.js
 	rm -rf assets/js/main-built.js
 	rm -rf assets/js/main-built.js.map
