@@ -4,7 +4,7 @@
 filetime:=$(shell date '+%Y%m%d%H%M%S')
 file_list:=$(find assets/templates/ -name "*.handlebars")
 
-all: init template
+all: init
 	r.js -o build/self.build.js
 
 init:
@@ -33,7 +33,7 @@ build: all
 	rm -rf output
 	r.js -o build/app.build.js
 
-output: build css
+output: build css template
 	rm -rf output/assets/js/*
 	cp -r .htaccess output/
 	cp -r output/assets/vendor/requirejs/require.js output/assets/js/
