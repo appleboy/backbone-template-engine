@@ -165,6 +165,31 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    htmlmin: {
+      options: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      dev: {
+        expand: true,
+        cwd: 'assets/templates/',
+        src: ['**/*.handlebars'],
+        dest: 'assets/templates/',
+        ext: '.handlebars'
+      },
+      index: {
+        files: {
+          'output/index.html': 'index.html'
+        }
+      },
+      release: {
+        expand: true,
+        cwd: 'output/assets/templates/',
+        src: ['**/*.handlebars'],
+        dest: 'output/assets/templates/',
+        ext: '.handlebars'
+      }
     }
   });
   grunt.event.on('watch', function(action, filepath) {
@@ -183,6 +208,7 @@ module.exports = function(grunt) {
     grunt.task.run(['shell:template', 'shell:build', 'shell:release', 'compass:release', 'clean:js']);
     grunt.file.mkdir('output/assets/js');
     grunt.task.run('copy:release');
+    grunt.task.run(['htmlmin:release', 'htmlmin:index']);
     grunt.task.run('replace:release');
     return grunt.task.run('clean:release');
   });
@@ -196,5 +222,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };
