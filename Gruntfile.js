@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         }
       },
       template: {
-        command: 'node node_modules/.bin/handlebars assets/templates/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless',
+        command: 'node node_modules/.bin/handlebars assets/tmp/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless',
         options: {
           stdout: true,
           stderr: true
@@ -132,7 +132,7 @@ module.exports = function(grunt) {
         force: true
       },
       js: 'output/assets/js',
-      release: ['output/package.json', 'output/build.txt', 'output/component.json', 'output/Makefile', 'output/README.mkd', 'output/build', 'output/assets/coffeescript', 'output/assets/sass', 'output/assets/config.rb', 'output/assets/vendor', 'output/assets/templates', 'output/Gruntfile*'],
+      release: ['output/package.json', 'output/build.txt', 'output/component.json', 'output/Makefile', 'output/README.mkd', 'output/build', 'output/assets/coffeescript', 'output/assets/sass', 'output/assets/config.rb', 'output/assets/vendor', 'output/assets/templates', 'output/Gruntfile*', 'assets/tmp'],
       cleanup: ['output', 'assets/vendor', 'assets/templates/template.js', 'assets/js/main-built.js', 'assets/js/main-built.js.map', 'assets/js/main-built.js.src', 'node_modules']
     },
     copy: {
@@ -175,20 +175,13 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'assets/templates/',
         src: ['**/*.handlebars'],
-        dest: 'assets/templates/',
+        dest: 'assets/tmp',
         ext: '.handlebars'
       },
       index: {
         files: {
           'output/index.html': 'index.html'
         }
-      },
-      release: {
-        expand: true,
-        cwd: 'output/assets/templates/',
-        src: ['**/*.handlebars'],
-        dest: 'output/assets/templates/',
-        ext: '.handlebars'
       }
     }
   });
@@ -202,13 +195,18 @@ module.exports = function(grunt) {
     grunt.log.writeln('Initial project');
     return (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
   });
+  grunt.registerTask('minify_template', function() {
+    grunt.log.writeln('minify handlebars templates.');
+    return grunt.task.run(['htmlmin:dev', 'shell:template']);
+  });
   grunt.registerTask('release', function() {
     grunt.log.writeln('deploy project');
     (grunt.file.exists('assets/vendor')) || grunt.task.run('shell:bower');
-    grunt.task.run(['shell:template', 'shell:build', 'shell:release', 'compass:release', 'clean:js']);
+    grunt.task.run('minify_template');
+    grunt.task.run(['shell:build', 'shell:release', 'compass:release', 'clean:js']);
     grunt.file.mkdir('output/assets/js');
     grunt.task.run('copy:release');
-    grunt.task.run(['htmlmin:release', 'htmlmin:index']);
+    grunt.task.run('htmlmin:index');
     grunt.task.run('replace:release');
     return grunt.task.run('clean:release');
   });
