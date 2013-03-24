@@ -1,8 +1,14 @@
 module.exports = (grunt) ->
     # build time
     filetime = Date.now();
+
+    project_config =
+        app: 'app'
+        output: 'output'
+
     # Project configuration
     grunt.initConfig
+        backbone: project_config
         shell:
             bower:
                 command: 'node node_modules/.bin/bower install'
@@ -13,7 +19,7 @@ module.exports = (grunt) ->
                         console.log('Install bower package compeletely.')
                         cb()
             template:
-                command: 'node node_modules/.bin/handlebars assets/tmp/*.handlebars -m -f assets/templates/template.js -k each -k if -k unless'
+                command: 'node node_modules/.bin/handlebars <%= backbone.app %>/assets/tmp/*.handlebars -m -f <%= backbone.app %>/assets/templates/template.js -k each -k if -k unless'
                 options:
                     stdout: true
                     stderr: true
@@ -31,10 +37,10 @@ module.exports = (grunt) ->
             options:
                 namespace: 'Handlebars.templates'
                 processName: (filename) ->
-                    return filename.replace(/assets\/templates\/(.*)\.handlebars$/i, '$1')
+                    return filename.replace(/<%= backbone.app %>\/assets\/templates\/(.*)\.handlebars$/i, '$1')
             compile:
                 files:
-                    'assets/templates/template.js': ['assets/templates/*.handlebars']
+                    '<%= backbone.app %>/assets/templates/template.js': ['<%= backbone.app %>/assets/templates/*.handlebars']
         connect:
             livereload:
                 options:
@@ -42,19 +48,19 @@ module.exports = (grunt) ->
                     base: '.'
         regarde:
             html:
-                files: ['**/*.html', '**/*.htm']
+                files: ['<%= backbone.app %>/**/*.html', '<%= backbone.app %>/**/*.htm']
                 tasks: ['livereload']
                 events: true
             scss:
-                files: ['**/*.scss'],
+                files: ['<%= backbone.app %>/**/*.scss'],
                 tasks: ['compass:dev']
                 events: true
             css:
-                files: ['**/*.css'],
+                files: ['<%= backbone.app %>/**/*.css'],
                 tasks: ['livereload']
                 events: true
             js:
-                files: '**/*.js',
+                files: '<%= backbone.app %>/**/*.js',
                 tasks: ['livereload']
                 events: true
             coffee:
@@ -62,27 +68,27 @@ module.exports = (grunt) ->
                 tasks: ['coffee']
                 events: true
             handlebars:
-                files: '**/*.handlebars',
+                files: '<%= backbone.app %>/**/*.handlebars',
                 tasks: ['handlebars', 'livereload']
                 events: true
         compass:
             dev:
                 options:
-                    basePath: 'assets'
-                    config: 'assets/config.rb'
+                    basePath: '<%= backbone.app %>/assets'
+                    config: '<%= backbone.app %>/assets/config.rb'
             release:
                 options:
                     force: true
-                    basePath: 'output/assets'
-                    config: 'output/assets/config.rb'
+                    basePath: '<%= backbone.output %>/assets'
+                    config: '<%= backbone.output %>/assets/config.rb'
                     outputStyle: 'compressed'
                     environment: 'production'
         coffee:
             app:
                 expand: true,
-                cwd: 'assets/coffeescript/',
+                cwd: '<%= backbone.app %>/assets/coffeescript/',
                 src: ['**/*.coffee'],
-                dest: 'assets/js/',
+                dest: '<%= backbone.app %>/assets/js/',
                 ext: '.js'
                 options:
                     bare: true
@@ -94,42 +100,36 @@ module.exports = (grunt) ->
         clean:
             options:
                 force: true
-            js: 'output/assets/js'
+            js: '<%= backbone.output %>/assets/js'
             release: [
-                'output/package.json'
-                'output/build.txt'
-                'output/component.json'
-                'output/Makefile'
-                'output/README.mkd'
-                'output/build'
-                'output/assets/coffeescript'
-                'output/assets/sass'
-                'output/assets/config.rb'
-                'output/assets/vendor'
-                'output/assets/templates'
-                'output/Gruntfile*'
-                'assets/tmp'
+                '<%= backbone.output %>/build.txt'
+                '<%= backbone.output %>/assets/coffeescript'
+                '<%= backbone.output %>/assets/sass'
+                '<%= backbone.output %>/assets/config.rb'
+                '<%= backbone.output %>/assets/vendor'
+                '<%= backbone.output %>/assets/templates'
+                '<%= backbone.app %>/assets/tmp'
             ]
             cleanup: [
-                'output'
-                'assets/vendor'
-                'assets/templates/template.js'
-                'assets/js/main-built.js'
-                'assets/js/main-built.js.map'
-                'assets/js/main-built.js.src'
+                '<%= backbone.output %>'
+                '<%= backbone.app %>/assets/vendor'
+                '<%= backbone.app %>/assets/templates/template.js'
+                '<%= backbone.app %>/assets/js/main-built.js'
+                '<%= backbone.app %>/assets/js/main-built.js.map'
+                '<%= backbone.app %>/assets/js/main-built.js.src'
                 'node_modules'
             ]
         copy:
             release:
                 files: [
-                    {src: '.htaccess', dest: 'output/'}
-                    {src: 'output/assets/vendor/requirejs/require.js', dest: 'output/assets/js/require.js'}
-                    {src: 'assets/js/main-built.js', dest: 'output/assets/js/' + filetime + '.js'}
+                    {src: '<%= backbone.app %>/.htaccess', dest: '<%= backbone.output %>/.htaccess'}
+                    {src: '<%= backbone.output %>/assets/vendor/requirejs/require.js', dest: '<%= backbone.output %>/assets/js/require.js'}
+                    {src: '<%= backbone.app %>/assets/js/main-built.js', dest: '<%= backbone.output %>/assets/js/' + filetime + '.js'}
                 ]
         replace:
             release:
-                src: 'output/index.html'
-                dest: 'output/index.html'
+                src: '<%= backbone.output %>/index.html'
+                dest: '<%= backbone.output %>/index.html'
                 replacements: [
                     {
                         from: 'js/main'
@@ -146,13 +146,13 @@ module.exports = (grunt) ->
                 collapseWhitespace: true
             dev:
                 expand: true,
-                cwd: 'assets/templates/',
+                cwd: '<%= backbone.app %>/assets/templates/',
                 src: ['**/*.handlebars'],
-                dest: 'assets/tmp',
+                dest: '<%= backbone.app %>/assets/tmp',
                 ext: '.handlebars'
             index:
                 files:
-                    'output/index.html': 'index.html'
+                    '<%= backbone.output %>/index.html': '<%= backbone.app %>/index.html'
 
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
@@ -162,7 +162,7 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'init', () ->
         grunt.log.writeln 'Initial project'
-        (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
+        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'shell:bower'
 
     grunt.registerTask 'minify_template', () ->
         grunt.log.writeln 'minify handlebars templates.'
@@ -170,11 +170,11 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'release', () ->
         grunt.log.writeln 'deploy project'
-        (grunt.file.exists 'assets/vendor') || grunt.task.run 'shell:bower'
+        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'shell:bower'
         # minify all handlebar template files.
         grunt.task.run 'minify_template'
         grunt.task.run ['shell:build', 'shell:release', 'compass:release', 'clean:js']
-        grunt.file.mkdir 'output/assets/js'
+        grunt.file.mkdir project_config.output + '/assets/js'
         grunt.task.run 'copy:release'
         grunt.task.run 'htmlmin:index'
         grunt.task.run 'replace:release'
