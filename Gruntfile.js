@@ -58,14 +58,14 @@ module.exports = function(grunt) {
     connect: {
       livereload: {
         options: {
-          port: 9001,
+          port: 3000,
           base: '.'
         }
       }
     },
     regarde: {
       html: {
-        files: ['<%= pkg.app %>/**/*.html', '<%= pkg.app %>/**/*.htm'],
+        files: ['<%= pkg.app %>/**/*.{html,htm}'],
         tasks: ['livereload'],
         events: true
       },
