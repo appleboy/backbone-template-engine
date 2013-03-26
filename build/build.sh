@@ -64,8 +64,6 @@ display 'install Handlebars.js template tool.'
 which handlebars 1> /dev/null 2>&1 || npm install -g handlebars
 display 'install grunt tool.'
 which grunt 1> /dev/null 2>&1 || npm install -g grunt
-display 'install django-html in an HTML minifier.'
-which pyminify 1> /dev/null 2>&1 || sudo pip install django-htmlmin
 
 # install npm dependency packages for grunt.js.
 npm install

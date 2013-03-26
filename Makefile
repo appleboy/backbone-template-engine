@@ -1,8 +1,8 @@
 .PHONY: output init template css build
 
 # setup path
-app_path:="app"
-output_path:="output"
+app_path:=$(shell echo "app")
+output_path:=$(shell echo "output")
 
 # Using time as file name
 filetime:=$(shell date '+%Y%m%d%H%M%S')
@@ -18,7 +18,7 @@ init:
 	@npm install
 
 template:
-	mkdir "$(app_path)/assets/tmp"
+	-mkdir "$(app_path)/assets/tmp"
 	for file in `find $(app_path)/assets/templates/ -type f -name '*.handlebars'`; \
 	do \
 		name=`basename $$file`; \
