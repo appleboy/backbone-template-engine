@@ -3,22 +3,33 @@
 PATH=$PATH:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 export PATH
 
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+RESET="\033[0m"
+
+display () {
+    COLOR=$2
+    [ -z $2 ] && COLOR=${YELLOW}
+    echo -e "${COLOR}=> $1 ${RESET}"
+}
+
 ##
 # install gem develop tool
 ##
 
 which gem 1> /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo '=> Please install gem tool via aptitude command.'
-    echo '=> $ sudo aptitude -y install ruby rake rubygems'
+    display 'Please install gem tool via aptitude command.'
+    display '$ sudo aptitude -y install ruby rake rubygems'
     exit
 fi
 
 which compass 1> /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo '=> update rubygems tool'
+    display 'update rubygems tool'
     sudo gem update --system
-    echo '=> install compass and sass tool'
+    display 'install compass and sass tool'
     sudo gem install sass compass
 fi
 
@@ -28,28 +39,36 @@ fi
 
 which npm 1> /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo '=> install nvm tool'
+    display 'install nvm tool'
     curl https://raw.github.com/appleboy/nvm/develop/install.sh | sh
     . ~/.nvm/nvm.sh # This loads NVM
-    echo '=> install node.js stable version'
+    display 'install node.js stable version'
     nvm install stable
-    echo '=> use node.js stable version'
+    display 'use node.js stable version'
     nvm use stable
 fi
 
-echo '=> install coffee-script tool'
-npm install -g coffee-script
-echo '=> install RequireJS in Node'
-npm install -g requirejs
-echo '=> install bower tool ref: http://twitter.github.com/bower/'
-npm install -g bower
-echo '=> install express server ref: http://expressjs.com'
-npm install -g express
-echo '=> install UglifyJS 2 node-based js compressor.'
-npm install -g uglify-js
-echo '=> install sqwish node-based CSS compressor.'
-npm install -g sqwish
-echo '=> install Handlebars.js template tool.'
-npm install -g handlebars
-echo '=> install grunt tool.'
-npm install -g grunt
+display 'install coffee-script tool'
+which coffee 1> /dev/null 2>&1 || npm install -g coffee-script
+display 'install RequireJS in Node'
+which r.js 1> /dev/null 2>&1 || npm install -g requirejs
+display 'install bower tool ref: http://twitter.github.com/bower/'
+which bower 1> /dev/null 2>&1 || npm install -g bower
+display 'install express server ref: http://expressjs.com'
+which express 1> /dev/null 2>&1 || npm install -g express
+display 'install UglifyJS 2 node-based js compressor.'
+which uglifyjs 1> /dev/null 2>&1 || npm install -g uglify-js
+display 'install sqwish node-based CSS compressor.'
+which sqwish 1> /dev/null 2>&1 || npm install -g sqwish
+display 'install Handlebars.js template tool.'
+which handlebars 1> /dev/null 2>&1 || npm install -g handlebars
+display 'install grunt tool.'
+which grunt 1> /dev/null 2>&1 || npm install -g grunt
+display 'install django-html in an HTML minifier.'
+which pyminify 1> /dev/null 2>&1 || sudo pip install django-htmlmin
+
+# install npm dependency packages for grunt.js.
+npm install
+
+# install require bower dependency package.
+bower install
