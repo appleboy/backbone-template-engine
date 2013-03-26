@@ -63,7 +63,7 @@ which sqwish 1> /dev/null 2>&1 || npm install -g sqwish
 display 'install Handlebars.js template tool.'
 which handlebars 1> /dev/null 2>&1 || npm install -g handlebars
 display 'install grunt tool.'
-which grunt 1> /dev/null 2>&1 || npm install -g grunt
+which grunt 1> /dev/null 2>&1 || npm install -g grunt-cli
 
 # install npm dependency packages for grunt.js.
 npm install
