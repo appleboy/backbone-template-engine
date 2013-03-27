@@ -7,6 +7,7 @@
         "backbone-amd": null,
         "underscore-amd": null,
         "requirejs": null,
-        "handlebars": null
+        "handlebars": null,
+        "normalize-scss": null
     }
 }
