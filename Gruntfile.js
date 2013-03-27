@@ -46,7 +46,7 @@ module.exports = function(grunt) {
       options: {
         namespace: 'Handlebars.templates',
         processName: function(filename) {
-          return filename.replace(/<%= pkg.app %>\/assets\/templates\/(.*)\.handlebars$/i, '$1');
+          return filename.replace(/.*\/(.*)\.handlebars$/i, '$1');
         }
       },
       compile: {

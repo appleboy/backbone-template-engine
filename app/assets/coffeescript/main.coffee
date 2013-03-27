@@ -7,7 +7,8 @@ require.config
         handlebars: '../vendor/handlebars/handlebars.runtime'
         templates: '../templates/template'
     shim:
-        'templates': 'handlebars'
+        'templates':
+            deps: ['handlebars']
     # for development
     urlArgs: (new Date()).getTime()
 

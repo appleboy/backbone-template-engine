@@ -37,7 +37,7 @@ module.exports = (grunt) ->
             options:
                 namespace: 'Handlebars.templates'
                 processName: (filename) ->
-                    return filename.replace(/<%= pkg.app %>\/assets\/templates\/(.*)\.handlebars$/i, '$1')
+                    filename.replace(/.*\/(.*)\.handlebars$/i, '$1')
             compile:
                 files:
                     '<%= pkg.app %>/assets/templates/template.js': ['<%= pkg.app %>/assets/templates/*.handlebars']

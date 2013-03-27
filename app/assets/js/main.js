@@ -7,7 +7,9 @@ require.config({
     templates: '../templates/template'
   },
   shim: {
-    'templates': 'handlebars'
+    'templates': {
+      deps: ['handlebars']
+    }
   },
   urlArgs: (new Date()).getTime()
 });
