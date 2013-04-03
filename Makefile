@@ -1,8 +1,8 @@
 .PHONY: output init template css build
 
 # setup path
-app_path:=$(shell echo "app")
-output_path:=$(shell echo "output")
+app_path ?= $(shell echo "app")
+output_path ?= $(shell echo "output")
 
 # Using time as file name
 filetime:=$(shell date '+%Y%m%d%H%M%S')
@@ -35,9 +35,9 @@ css:
 
 build: all
 	rm -rf $(output_path)
-	r.js -o build/app.build.js
+	r.js -o build/app.build.js dir=$(output_path)
 
-output: template build css
+release: template build css
 	rm -rf $(output_path)/assets/js/*
 	cp -r $(output_path)/assets/vendor/requirejs/require.js $(output_path)/assets/js/
 	cp -r $(app_path)/assets/js/main-built.js $(output_path)/assets/js/$(filetime).js
