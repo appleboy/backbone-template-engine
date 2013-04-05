@@ -42,6 +42,34 @@ module.exports = function(grunt) {
         }
       }
     },
+    requirejs: {
+      build: {
+        options: {
+          baseUrl: '<%= pkg.app %>/assets/js/',
+          name: 'main',
+          out: '<%= pkg.app %>/assets/js/main-built.js',
+          mainConfigFile: '<%= pkg.app %>/assets/js/main.js',
+          preserveLicenseComments: false
+        }
+      },
+      release: {
+        options: {
+          /*
+          support generate Source Maps, make sure requirejs version in 2.1.2
+          optimize: 'uglify2'
+          generateSourceMaps: true
+          */
+
+          appDir: "<%= pkg.app %>/",
+          baseUrl: "assets/js/",
+          dir: "<%= pkg.output %>",
+          name: "main",
+          mainConfigFile: '<%= pkg.app %>/assets/js/main.js',
+          preserveLicenseComments: false,
+          fileExclusionRegExp: /^(\.|node_modules)/
+        }
+      }
+    },
     handlebars: {
       options: {
         namespace: 'Handlebars.templates',
@@ -225,7 +253,7 @@ module.exports = function(grunt) {
     grunt.log.writeln('deploy project');
     (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('shell:bower');
     grunt.task.run('minify_template');
-    grunt.task.run(['shell:build', 'shell:release', 'compass:release', 'clean:js']);
+    grunt.task.run(['requirejs:build', 'requirejs:release', 'compass:release', 'clean:js']);
     grunt.file.mkdir(project_config.output + '/assets/js');
     grunt.task.run('copy:release');
     grunt.task.run('htmlmin:index');
@@ -243,5 +271,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-requirejs');
   return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };
