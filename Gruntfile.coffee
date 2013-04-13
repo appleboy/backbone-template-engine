@@ -33,6 +33,20 @@ module.exports = (grunt) ->
                 options:
                     stdout: true
                     stderr: true
+        bower:
+            install:
+                options:
+                    targetDir: 'app/assets/vendor/lib'
+                    cleanup: false
+                    install: true
+                    verbose: true
+                    layout: 'byType'
+            cleanup:
+                options:
+                    targetDir: 'app/assets/vendor/lib'
+                    cleanup: true
+                    verbose: true
+                    install: false
         requirejs:
             build:
                 options:
@@ -200,7 +214,7 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'init', () ->
         grunt.log.writeln 'Initial project'
-        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'shell:bower'
+        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
 
     grunt.registerTask 'minify_template', () ->
         grunt.log.writeln 'minify handlebars templates.'
@@ -208,7 +222,7 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'release', () ->
         grunt.log.writeln 'deploy project'
-        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'shell:bower'
+        (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
         # minify all handlebar template files.
         grunt.task.run 'minify_template'
         grunt.task.run ['requirejs:build', 'requirejs:release', 'compass:release', 'clean:js']
@@ -231,5 +245,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-text-replace'
     grunt.loadNpmTasks 'grunt-contrib-htmlmin'
     grunt.loadNpmTasks 'grunt-requirejs'
+    grunt.loadNpmTasks 'grunt-bower-task'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']

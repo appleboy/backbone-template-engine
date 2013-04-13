@@ -42,6 +42,25 @@ module.exports = function(grunt) {
         }
       }
     },
+    bower: {
+      install: {
+        options: {
+          targetDir: 'app/assets/vendor/lib',
+          cleanup: false,
+          install: true,
+          verbose: true,
+          layout: 'byType'
+        }
+      },
+      cleanup: {
+        options: {
+          targetDir: 'app/assets/vendor/lib',
+          cleanup: true,
+          verbose: true,
+          install: false
+        }
+      }
+    },
     requirejs: {
       build: {
         options: {
@@ -243,7 +262,7 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('init', function() {
     grunt.log.writeln('Initial project');
-    return (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('shell:bower');
+    return (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('bower:install');
   });
   grunt.registerTask('minify_template', function() {
     grunt.log.writeln('minify handlebars templates.');
@@ -251,7 +270,7 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('release', function() {
     grunt.log.writeln('deploy project');
-    (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('shell:bower');
+    (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('bower:install');
     grunt.task.run('minify_template');
     grunt.task.run(['requirejs:build', 'requirejs:release', 'compass:release', 'clean:js']);
     grunt.file.mkdir(project_config.output + '/assets/js');
@@ -272,5 +291,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-requirejs');
+  grunt.loadNpmTasks('grunt-bower-task');
   return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };
