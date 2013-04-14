@@ -8,6 +8,7 @@
         "underscore-amd": null,
         "requirejs": null,
         "handlebars": null,
-        "normalize-scss": null
+        "normalize-scss": null,
+        "modernizr": null
     }
 }

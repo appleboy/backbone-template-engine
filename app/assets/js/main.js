@@ -4,6 +4,7 @@ require.config({
     underscore: '../vendor/underscore-amd/underscore',
     backbone: '../vendor/backbone-amd/backbone',
     handlebars: '../vendor/handlebars/handlebars.runtime',
+    modernizr: '../vendor/modernizr/modernizr',
     templates: '../templates/template'
   },
   shim: {
