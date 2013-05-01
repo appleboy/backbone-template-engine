@@ -45,19 +45,18 @@ module.exports = function(grunt) {
     bower: {
       install: {
         options: {
-          targetDir: 'app/assets/vendor/lib',
           cleanup: false,
           install: true,
           verbose: true,
-          layout: 'byType'
+          copy: false
         }
       },
       cleanup: {
         options: {
-          targetDir: 'app/assets/vendor/lib',
           cleanup: true,
           verbose: true,
-          install: false
+          install: false,
+          copy: false
         }
       }
     },
