@@ -1,14 +1,19 @@
 {
-    "name": "backbone-template-engine",
-    "version": "1.0.0",
-    "dependencies": {
-        "jquery": null,
-        "jquery-migrate": null,
-        "backbone-amd": null,
-        "underscore-amd": null,
-        "requirejs": null,
-        "handlebars": null,
-        "normalize-scss": null,
-        "modernizr": null
-    }
+  "name": "backbone-template-engine",
+  "version": "1.0.0",
+  "dependencies": {
+    "handlebars": "~1.0.0-rc.3",
+    "jquery": "~2.0.0",
+    "jquery-migrate": "~1.1.1",
+    "normalize-scss": "~2.1.1",
+    "backbone-amd": "~1.0.0",
+    "modernizr": "~2.6.2",
+    "requirejs": "~2.1.5",
+    "underscore-amd": "~1.4.4"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
 }
