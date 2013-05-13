@@ -134,6 +134,13 @@ module.exports = (grunt) ->
                     relativeAssets: true
                     noLineComments: true
                     environment: 'production'
+        cssmin:
+            release:
+                report: 'gzip'
+                expand: true
+                cwd: '<%= pkg.output %>/assets/css'
+                src: ['*.css']
+                dest: '<%= pkg.output %>/assets/css'
         coffee:
             app:
                 expand: true,
@@ -224,7 +231,7 @@ module.exports = (grunt) ->
         (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
         # minify all handlebar template files.
         grunt.task.run 'minify_template'
-        grunt.task.run ['requirejs:build', 'requirejs:release', 'compass:release', 'clean:js']
+        grunt.task.run ['requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']
         grunt.file.mkdir project_config.output + '/assets/js'
         grunt.task.run 'copy:release'
         grunt.task.run 'htmlmin:index'
@@ -245,5 +252,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-htmlmin'
     grunt.loadNpmTasks 'grunt-requirejs'
     grunt.loadNpmTasks 'grunt-bower-task'
+    grunt.loadNpmTasks 'grunt-contrib-cssmin'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']

@@ -175,6 +175,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    cssmin: {
+      release: {
+        report: 'gzip',
+        expand: true,
+        cwd: '<%= pkg.output %>/assets/css',
+        src: ['*.css'],
+        dest: '<%= pkg.output %>/assets/css'
+      }
+    },
     coffee: {
       app: {
         expand: true,
@@ -271,7 +280,7 @@ module.exports = function(grunt) {
     grunt.log.writeln('deploy project');
     (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('bower:install');
     grunt.task.run('minify_template');
-    grunt.task.run(['requirejs:build', 'requirejs:release', 'compass:release', 'clean:js']);
+    grunt.task.run(['requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']);
     grunt.file.mkdir(project_config.output + '/assets/js');
     grunt.task.run('copy:release');
     grunt.task.run('htmlmin:index');
@@ -291,5 +300,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-requirejs');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };
