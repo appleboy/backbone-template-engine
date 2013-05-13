@@ -41,6 +41,7 @@ release: template build css
 	rm -rf $(output_path)/assets/js/*
 	cp -r $(output_path)/assets/vendor/requirejs/require.js $(output_path)/assets/js/
 	cp -r $(app_path)/assets/js/main-built.js $(output_path)/assets/js/$(filetime).js
+	cp -r $(app_path)/.htaccess $(output_path)/
 	rm -rf $(output_path)/build.txt
 	rm -rf $(output_path)/assets/coffeescript $(output_path)/assets/sass
 	rm -rf $(output_path)/assets/vendor $(output_path)/assets/templates

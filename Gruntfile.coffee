@@ -169,7 +169,7 @@ module.exports = (grunt) ->
                 '<%= pkg.output %>/assets/config.rb'
                 '<%= pkg.output %>/assets/vendor'
                 '<%= pkg.output %>/assets/templates'
-                '<%= pkg.app %>/assets/tmp'
+                '<%= pkg.output %>/assets/tmp'
             ]
             cleanup: [
                 '<%= pkg.output %>'

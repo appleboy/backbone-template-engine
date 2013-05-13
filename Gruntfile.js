@@ -214,7 +214,7 @@ module.exports = function(grunt) {
         force: true
       },
       js: '<%= pkg.output %>/assets/js',
-      release: ['<%= pkg.output %>/build.txt', '<%= pkg.output %>/assets/coffeescript', '<%= pkg.output %>/assets/sass', '<%= pkg.output %>/assets/config.rb', '<%= pkg.output %>/assets/vendor', '<%= pkg.output %>/assets/templates', '<%= pkg.app %>/assets/tmp'],
+      release: ['<%= pkg.output %>/build.txt', '<%= pkg.output %>/assets/coffeescript', '<%= pkg.output %>/assets/sass', '<%= pkg.output %>/assets/config.rb', '<%= pkg.output %>/assets/vendor', '<%= pkg.output %>/assets/templates', '<%= pkg.output %>/assets/tmp'],
       cleanup: ['<%= pkg.output %>', '<%= pkg.app %>/assets/vendor', '<%= pkg.app %>/assets/templates/template.js', '<%= pkg.app %>/assets/js/main-built.js', '<%= pkg.app %>/assets/js/main-built.js.map', '<%= pkg.app %>/assets/js/main-built.js.src', 'node_modules']
     },
     copy: {
