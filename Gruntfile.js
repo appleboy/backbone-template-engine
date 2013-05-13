@@ -202,6 +202,11 @@ module.exports = function(grunt) {
         options: {
           bare: true
         }
+      },
+      test: {
+        files: {
+          'test/test.js': 'test/test.coffee'
+        }
       }
     },
     clean: {

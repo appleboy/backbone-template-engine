@@ -155,6 +155,9 @@ module.exports = (grunt) ->
                     'Gruntfile.js': 'Gruntfile.coffee'
                 options:
                     bare: true
+            test:
+                files:
+                    'test/test.js': 'test/test.coffee'
         clean:
             options:
                 force: true
