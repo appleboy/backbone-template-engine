@@ -29,11 +29,13 @@
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-htmlmin": "~0.1.3",
     "grunt-requirejs": "~0.3.5",
-    "grunt-bower-task": "~0.2.2"
+    "grunt-bower-task": "~0.2.2",
+    "mocha": "~1.9.0"
   },
   "optionalDependencies": {},
   "scripts": {
-    "grunt": "node_modules/.bin/grunt"
+    "grunt": "node_modules/.bin/grunt",
+    "test": "mocha --reporter spec"
   },
   "engines": {
     "node": ">= 0.8.0"
