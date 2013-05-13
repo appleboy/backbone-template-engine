@@ -1,4 +1,4 @@
-.PHONY: output init template css build
+.PHONY: output init template css build test
 
 # setup path
 app_path ?= $(shell echo "app")
@@ -63,3 +63,6 @@ clean:
 	rm -rf $(app_path)/assets/js/main-built.js
 	rm -rf $(app_path)/assets/js/main-built.js.map
 	rm -rf $(app_path)/assets/js/main-built.js.src
+
+test: release
+	@./node_modules/.bin/mocha --reporter spec
