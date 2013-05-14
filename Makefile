@@ -11,6 +11,15 @@ file_list:=$(find assets/templates/ -name "*.handlebars")
 all: init
 	r.js -o build/self.build.js
 
+compass:
+	compass watch .
+
+coffee:
+	coffee -b -w -c -o $(app_path)/assets/js $(app_path)/assets/coffeescript
+
+livereload:
+	guard start
+
 init:
 	@which bower 1> /dev/null 2>&1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
 	@test -d "$(app_path)/assets/vendor" || bower install
