@@ -203,6 +203,11 @@ module.exports = function(grunt) {
           bare: true
         }
       },
+      server: {
+        files: {
+          'build/server.js': 'build/server.coffee'
+        }
+      },
       test: {
         files: {
           'test/test.js': 'test/test.coffee'
