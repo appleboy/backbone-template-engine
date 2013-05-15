@@ -2,7 +2,7 @@
   "name": "backbone-template-engine",
   "version": "1.0.0",
   "dependencies": {
-    "handlebars": "~1.0.0-rc.3",
+    "handlebars": "~1.0.0-rc.4",
     "jquery": "~2.0.0",
     "jquery-migrate": "~1.2.0",
     "normalize-scss": "~2.1.1",
