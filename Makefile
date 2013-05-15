@@ -1,4 +1,4 @@
-.PHONY: output init template css build test
+.PHONY: output init template css build test compass coffee livereload server
 
 # setup path
 app_path ?= $(shell echo "app")
@@ -19,6 +19,9 @@ coffee:
 
 livereload:
 	guard start
+
+server:
+	node build/server.js
 
 init:
 	@which bower 1> /dev/null 2>&1 ; if [ $$? -ne 0 ] ; then ./build/build.sh ; fi
