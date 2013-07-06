@@ -101,12 +101,23 @@ module.exports = (grunt) ->
                 events: true
             coffee:
                 files: ['**/*.coffee', '!**/node_modules/**'],
-                tasks: ['coffee']
+                tasks: ['coffeelint', 'coffee']
                 events: true
             handlebars:
                 files: '<%= pkg.app %>/**/*.handlebars',
                 tasks: ['handlebars', 'livereload']
                 events: true
+        coffeelint:
+            options:
+                'force': true;
+                'no_trailing_whitespace':
+                    'level': 'error'
+                'max_line_length':
+                    'level': 'ignore'
+                'indentation':
+                    'value': 4
+                    'level': 'error'
+            dev: ['**/*.coffee', '!**/node_modules/**']
         compass:
             dev:
                 options:
@@ -259,5 +270,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-requirejs'
     grunt.loadNpmTasks 'grunt-bower-task'
     grunt.loadNpmTasks 'grunt-contrib-cssmin'
+    grunt.loadNpmTasks 'grunt-coffeelint'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']

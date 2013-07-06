@@ -132,7 +132,7 @@ module.exports = function(grunt) {
       },
       coffee: {
         files: ['**/*.coffee', '!**/node_modules/**'],
-        tasks: ['coffee'],
+        tasks: ['coffeelint', 'coffee'],
         events: true
       },
       handlebars: {
@@ -140,6 +140,22 @@ module.exports = function(grunt) {
         tasks: ['handlebars', 'livereload'],
         events: true
       }
+    },
+    coffeelint: {
+      options: {
+        'force': true,
+        'no_trailing_whitespace': {
+          'level': 'error'
+        },
+        'max_line_length': {
+          'level': 'ignore'
+        },
+        'indentation': {
+          'value': 4,
+          'level': 'error'
+        }
+      },
+      dev: ['**/*.coffee', '!**/node_modules/**']
     },
     compass: {
       dev: {
@@ -310,5 +326,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-requirejs');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-coffeelint');
   return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
 };
