@@ -1,6 +1,6 @@
 module.exports = (grunt) ->
     # build time
-    filetime = Date.now();
+    filetime = Date.now()
 
     project_config =
         app: 'app'
@@ -100,7 +100,7 @@ module.exports = (grunt) ->
                 tasks: ['livereload']
                 events: true
             coffee:
-                files: ['**/*.coffee', '!**/node_modules/**'],
+                files: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**'],
                 tasks: ['coffeelint', 'coffee']
                 events: true
             handlebars:
@@ -109,7 +109,7 @@ module.exports = (grunt) ->
                 events: true
         coffeelint:
             options:
-                'force': true;
+                'force': true
                 'no_trailing_whitespace':
                     'level': 'error'
                 'max_line_length':
@@ -117,7 +117,7 @@ module.exports = (grunt) ->
                 'indentation':
                     'value': 4
                     'level': 'error'
-            dev: ['**/*.coffee', '!**/node_modules/**']
+            dev: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**']
         compass:
             dev:
                 options:
