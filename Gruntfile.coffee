@@ -100,7 +100,7 @@ module.exports = (grunt) ->
                 tasks: ['livereload']
                 events: true
             coffee:
-                files: '**/*.coffee',
+                files: ['**/*.coffee', '!**/node_modules/**'],
                 tasks: ['coffee']
                 events: true
             handlebars:

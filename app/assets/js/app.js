@@ -1,9 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'modernizr', 'handlebars', 'libs/console', 'templates'], function($, _, Backbone) {
   var initialize;
-
   initialize = function() {
     var data;
-
     data = {
       title: 'Welcome to Backbone Template Engine.'
     };

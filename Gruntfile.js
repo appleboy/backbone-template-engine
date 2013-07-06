@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
   var filetime, project_config;
-
   filetime = Date.now();
   project_config = {
     app: 'app',
@@ -132,7 +131,7 @@ module.exports = function(grunt) {
         events: true
       },
       coffee: {
-        files: '**/*.coffee',
+        files: ['**/*.coffee', '!**/node_modules/**'],
         tasks: ['coffee'],
         events: true
       },
