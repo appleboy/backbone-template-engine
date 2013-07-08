@@ -2,13 +2,13 @@
   "name": "backbone-template-engine",
   "version": "1.0.0",
   "dependencies": {
-    "handlebars": "~1.0.0-rc.4",
-    "jquery": "~2.0.0",
-    "jquery-migrate": "~1.2.0",
-    "normalize-scss": "~2.1.1",
+    "handlebars": "~1.0.0",
+    "jquery": "~2.0.3",
+    "jquery-migrate": "~1.2.1",
+    "normalize-scss": "~2.1.2",
     "backbone-amd": "~1.0.0",
     "modernizr": "~2.6.2",
-    "requirejs": "~2.1.5",
+    "requirejs": "~2.1.6",
     "underscore-amd": "~1.4.4"
   },
   "ignore": [
