@@ -32,7 +32,7 @@
     "grunt-bower-task": "~0.2.3",
     "mocha": "~1.9.0",
     "grunt-contrib-cssmin": "~0.6.1",
-    "requirejs": "~2.1.6",
+    "requirejs": "~2.1.8",
     "handlebars": "~1.0.12",
     "express": "~3.2.6",
     "grunt": "~0.4.1",
