@@ -55,27 +55,18 @@ audio:not([controls]) {
    Base
    ========================================================================== */
 /**
- * 1. Prevent system color scheme's background color being used in Firefox, IE,
- *    and Opera.
- * 2. Prevent system color scheme's text color being used in Firefox, IE, and
- *    Opera.
- * 3. Set default font family to sans-serif.
- * 4. Prevent iOS text size adjust after orientation change, without disabling
- *    user zoom.
- * 5.Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ * 3.Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
  *    `em` units.
  */
 html {
-  background: #fff;
-  /* 1 */
-  color: #000;
-  /* 2 */
   font-family: sans-serif;
-  /* 3 */
+  /* 1 */
   -ms-text-size-adjust: 100%;
-  /* 4 */
+  /* 2 */
   -webkit-text-size-adjust: 100%;
-  /* 4 */ }
+  /* 2 */ }
 
 /**
  * Remove default margin.
