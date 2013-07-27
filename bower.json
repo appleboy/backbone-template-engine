@@ -9,7 +9,7 @@
     "backbone-amd": "~1.0.0",
     "modernizr": "~2.6.2",
     "requirejs": "~2.1.6",
-    "underscore-amd": "~1.4.4"
+    "underscore-amd": "~1.5.1"
   },
   "ignore": [
     "**/.*",
