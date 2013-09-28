@@ -101,44 +101,47 @@ module.exports = function(grunt) {
       }
     },
     connect: {
-      livereload: {
+      server: {
         options: {
+          base: '<%= pkg.app %>',
           hostname: '0.0.0.0',
-          port: 3000,
-          base: '.'
+          port: 4000
         }
       }
     },
-    regarde: {
+    watch: {
       html: {
         files: ['<%= pkg.app %>/**/*.{html,htm}'],
-        tasks: ['livereload'],
-        events: true
+        options: {
+          livereload: true
+        }
       },
       scss: {
         files: ['<%= pkg.app %>/**/*.scss'],
-        tasks: ['compass:dev'],
-        events: true
+        tasks: ['compass:dev']
       },
       css: {
         files: ['<%= pkg.app %>/**/*.css'],
-        tasks: ['livereload'],
-        events: true
+        options: {
+          livereload: true
+        }
       },
       js: {
         files: '<%= pkg.app %>/**/*.js',
-        tasks: ['livereload'],
-        events: true
+        options: {
+          livereload: true
+        }
       },
       coffee: {
         files: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**'],
-        tasks: ['coffeelint', 'coffee'],
-        events: true
+        tasks: ['coffeelint', 'coffee']
       },
       handlebars: {
         files: '<%= pkg.app %>/**/*.handlebars',
-        tasks: ['handlebars', 'livereload'],
-        events: true
+        tasks: ['handlebars'],
+        options: {
+          livereload: true
+        }
       }
     },
     coffeelint: {
@@ -317,7 +320,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
-  grunt.loadNpmTasks('grunt-contrib-livereload');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -328,5 +331,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-coffeelint');
-  return grunt.registerTask('default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']);
+  return grunt.registerTask('default', ['init', 'handlebars', 'connect', 'watch']);
 };

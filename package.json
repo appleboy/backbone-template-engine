@@ -18,7 +18,7 @@
   "devDependencies": {
     "grunt-cli": "~0.1.9",
     "grunt-shell": "~0.2.2",
-    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-handlebars": "~0.5.10",
     "grunt-regarde": "~0.1.1",
     "grunt-contrib-livereload": "~0.1.2",
@@ -37,7 +37,10 @@
     "express": "~3.2.6",
     "grunt": "~0.4.1",
     "bower": "~1.1.2",
-    "grunt-coffeelint": "0.0.7"
+    "grunt-coffeelint": "0.0.7",
+    "phantomjs": "~1.9.2-1",
+    "grunt-mocha-phantomjs": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
   },
   "optionalDependencies": {},
   "scripts": {

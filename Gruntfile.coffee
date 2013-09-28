@@ -77,36 +77,36 @@ module.exports = (grunt) ->
                 files:
                     '<%= pkg.app %>/assets/templates/template.js': ['<%= pkg.app %>/assets/templates/*.handlebars']
         connect:
-            livereload:
+            server:
                 options:
+                    base: '<%= pkg.app %>'
                     hostname: '0.0.0.0'
-                    port: 3000
-                    base: '.'
-        regarde:
+                    port: 4000
+        watch:
             html:
                 files: ['<%= pkg.app %>/**/*.{html,htm}']
-                tasks: ['livereload']
-                events: true
+                options:
+                    livereload: true
             scss:
                 files: ['<%= pkg.app %>/**/*.scss'],
                 tasks: ['compass:dev']
-                events: true
             css:
                 files: ['<%= pkg.app %>/**/*.css'],
-                tasks: ['livereload']
-                events: true
+                options:
+                    livereload: true
             js:
                 files: '<%= pkg.app %>/**/*.js',
-                tasks: ['livereload']
-                events: true
+                options:
+                    livereload: true
             coffee:
                 files: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**'],
                 tasks: ['coffeelint', 'coffee']
-                events: true
             handlebars:
                 files: '<%= pkg.app %>/**/*.handlebars',
-                tasks: ['handlebars', 'livereload']
-                events: true
+                tasks: ['handlebars']
+                options:
+                    livereload: true
+
         coffeelint:
             options:
                 'force': true
@@ -261,7 +261,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
-    grunt.loadNpmTasks 'grunt-contrib-livereload'
+    grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-contrib-compass'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-copy'
@@ -273,4 +273,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-cssmin'
     grunt.loadNpmTasks 'grunt-coffeelint'
 
-    grunt.registerTask 'default', ['init', 'handlebars', 'livereload-start', 'connect', 'regarde']
+    grunt.registerTask 'default', ['init', 'handlebars', 'connect', 'watch']
