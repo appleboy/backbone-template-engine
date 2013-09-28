@@ -1,7 +1,7 @@
 assert = require("assert")
 fs = require('fs')
 
-describe 'html5 template generator test', () ->
+describe 'backbone template generator test', () ->
     it 'creates expected files', () ->
         expected = [
             'output/favicon.ico',
