@@ -309,7 +309,7 @@ module.exports = function(grunt) {
     grunt.log.writeln('deploy project');
     (grunt.file.exists(project_config.app + '/assets/vendor')) || grunt.task.run('bower:install');
     grunt.task.run('minify_template');
-    grunt.task.run(['requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']);
+    grunt.task.run(['compass:dev', 'requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']);
     grunt.file.mkdir(project_config.output + '/assets/js');
     grunt.task.run('copy:release');
     grunt.task.run('htmlmin:index');
