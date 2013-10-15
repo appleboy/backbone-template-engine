@@ -273,4 +273,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-cssmin'
     grunt.loadNpmTasks 'grunt-coffeelint'
 
-    grunt.registerTask 'default', ['init', 'handlebars', 'connect', 'watch']
+    grunt.registerTask 'default', ['init', 'handlebars', 'connect', 'compass:dev', 'watch']

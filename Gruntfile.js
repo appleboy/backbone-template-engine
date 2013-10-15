@@ -331,5 +331,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-coffeelint');
-  return grunt.registerTask('default', ['init', 'handlebars', 'connect', 'watch']);
+  return grunt.registerTask('default', ['init', 'handlebars', 'connect', 'compass:dev', 'watch']);
 };
