@@ -233,9 +233,6 @@ module.exports = (grunt) ->
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
 
-    grunt.event.on 'regarde:file', (status, name, filepath, tasks, spawn) ->
-        grunt.log.writeln 'File ' + filepath + ' ' + status + '. Tasks: ' + tasks
-
     grunt.registerTask 'init', () ->
         grunt.log.writeln 'Initial project'
         (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
@@ -257,7 +254,6 @@ module.exports = (grunt) ->
         grunt.task.run 'clean:release'
 
     # Dependencies
-    grunt.loadNpmTasks 'grunt-regarde'
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
