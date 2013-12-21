@@ -84,7 +84,8 @@ module.exports = (grunt) ->
                     port: 4000
         watch:
             html:
-                files: ['<%= pkg.app %>/**/*.{html,htm}']
+                files: ['<%= pkg.app %>/*.{html,htm}']
+                tasks: ['validation']
                 options:
                     livereload: true
             scss:
@@ -118,6 +119,7 @@ module.exports = (grunt) ->
                     'value': 4
                     'level': 'error'
             dev: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**']
+
         compass:
             dev:
                 options:
@@ -230,6 +232,10 @@ module.exports = (grunt) ->
                 files:
                     '<%= pkg.output %>/index.html': '<%= pkg.app %>/index.html'
 
+        validation:
+            files:
+                src: ['<%= pkg.app %>/*.html']
+
     grunt.event.on 'watch', (action, filepath) ->
         grunt.log.writeln filepath + ' has ' + action
 
@@ -268,5 +274,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-bower-task'
     grunt.loadNpmTasks 'grunt-contrib-cssmin'
     grunt.loadNpmTasks 'grunt-coffeelint'
+    grunt.loadNpmTasks 'grunt-html-validation'
 
     grunt.registerTask 'default', ['init', 'handlebars', 'connect', 'compass:dev', 'watch']
