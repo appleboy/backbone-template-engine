@@ -8,3 +8,5 @@ app/assets/tmp/
 output/
 node_modules/
 app/assets/css
+validation-status.json
+validation-report.json
