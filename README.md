@@ -1,8 +1,7 @@
-backbone-template-engine [![Build Status](https://travis-ci.org/appleboy/backbone-template-engine.png)](http://travis-ci.org/appleboy/backbone-template-engine) [![Build Status](https://drone.io/github.com/appleboy/backbone-template-engine/status.png)](https://drone.io/github.com/appleboy/backbone-template-engine/latest)
-========================
+# Backbone-Template-Engine
+[ ![Codeship Status for appleboy/backbone-template-engine](https://www.codeship.io/projects/cd4cbb80-0a59-0131-b608-2ec31197f4f1/status?branch=master)](https://www.codeship.io/projects/7463) [![Build Status](https://travis-ci.org/appleboy/backbone-template-engine.png)](http://travis-ci.org/appleboy/backbone-template-engine) [![Build Status](https://drone.io/github.com/appleboy/backbone-template-engine/status.png)](https://drone.io/github.com/appleboy/backbone-template-engine/latest)
 
-Features
--------------
+## Features
 
 * The latest [html5boilerplate.com](http://html5boilerplate.com/) source code.
 * Includes [Normalize.scss](https://github.com/appleboy/normalize.scss) v2.1.x and v1.1.x.
