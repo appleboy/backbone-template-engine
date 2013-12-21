@@ -3,9 +3,9 @@ define(['jquery', 'underscore', 'backbone', 'modernizr', 'handlebars', 'libs/con
   initialize = function() {
     var data;
     data = {
-      title: 'Welcome to Backbone Template Engine.'
+      title: 'Welcome to Backbone Template Engine'
     };
-    $('body').html(Handlebars.templates.index(data));
+    $('h1#head').html(Handlebars.templates.index(data));
     console.info(data.title);
     if (Modernizr.canvas) {
       console.info('Your browser support canvas');
