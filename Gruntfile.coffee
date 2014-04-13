@@ -158,15 +158,10 @@ module.exports = (grunt) ->
         coffee:
             app:
                 expand: true,
-                cwd: '<%= pkg.app %>/assets/coffeescript/',
+                cwd: '<%= pkg.app %>/assets/coffee/',
                 src: ['**/*.coffee'],
                 dest: '<%= pkg.app %>/assets/js/',
                 ext: '.js'
-                options:
-                    bare: true
-            grunt:
-                files:
-                    'Gruntfile.js': 'Gruntfile.coffee'
                 options:
                     bare: true
             server:
@@ -181,7 +176,7 @@ module.exports = (grunt) ->
             js: '<%= pkg.output %>/assets/js'
             release: [
                 '<%= pkg.output %>/build.txt'
-                '<%= pkg.output %>/assets/coffeescript'
+                '<%= pkg.output %>/assets/coffee'
                 '<%= pkg.output %>/assets/sass'
                 '<%= pkg.output %>/assets/config.rb'
                 '<%= pkg.output %>/assets/vendor'

@@ -43,7 +43,7 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "grunt": "node_modules/.bin/grunt",
+    "start": "grunt",
     "test": "mocha --reporter spec"
   },
   "engines": {
