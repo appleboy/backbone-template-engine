@@ -3,16 +3,15 @@ define [
   'jquery',
   'underscore',
   'backbone',
+  'hbs!../templates/index'
   'modernizr',
   'handlebars',
-  'libs/console',
-  'templates'], ($, _, Backbone) ->
+  'libs/console'
+  ], ($, _, Backbone, template) ->
   initialize = ->
-    data = {
+    data =
       title: 'Welcome to Backbone Template Engine'
-    }
-    $('h1#head').html(Handlebars.templates.index(data))
-    console.info data.title
+    $('h1#head').html(template(data))
     if (Modernizr.canvas)
       console.info 'Your browser support canvas'
     else

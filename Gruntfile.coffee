@@ -68,14 +68,6 @@ module.exports = (grunt) ->
           mainConfigFile: '<%= pkg.app %>/assets/js/main.js'
           preserveLicenseComments: false
           fileExclusionRegExp: /^(\.|node_modules)/
-    handlebars:
-      options:
-        namespace: 'Handlebars.templates'
-        processName: (filename) ->
-          filename.replace(/.*\/(.*)\.handlebars$/i, '$1')
-      compile:
-        files:
-          '<%= pkg.app %>/assets/templates/template.js': ['<%= pkg.app %>/assets/templates/*.handlebars']
     connect:
       server:
         options:
@@ -216,12 +208,6 @@ module.exports = (grunt) ->
       options:
         removeComments: true
         collapseWhitespace: true
-      dev:
-        expand: true,
-        cwd: '<%= pkg.app %>/assets/templates/',
-        src: ['**/*.handlebars'],
-        dest: '<%= pkg.app %>/assets/tmp',
-        ext: '.handlebars'
       index:
         files:
           '<%= pkg.output %>/index.html': '<%= pkg.app %>/index.html'
@@ -237,15 +223,9 @@ module.exports = (grunt) ->
     grunt.log.writeln 'Initial project'
     (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
 
-  grunt.registerTask 'minify_template', () ->
-    grunt.log.writeln 'minify handlebars templates.'
-    grunt.task.run ['htmlmin:dev', 'shell:template']
-
   grunt.registerTask 'release', () ->
     grunt.log.writeln 'deploy project'
     (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
-    # minify all handlebar template files.
-    grunt.task.run 'minify_template'
     grunt.task.run ['compass:dev', 'requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']
     grunt.file.mkdir project_config.output + '/assets/js'
     grunt.task.run 'copy:release'
@@ -256,7 +236,6 @@ module.exports = (grunt) ->
   # Dependencies
   grunt.loadNpmTasks 'grunt-shell'
   grunt.loadNpmTasks 'grunt-contrib-connect'
-  grunt.loadNpmTasks 'grunt-contrib-handlebars'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -270,4 +249,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-html-validation'
 
-  grunt.registerTask 'default', ['init', 'handlebars', 'connect', 'compass:dev', 'watch']
+  grunt.registerTask 'default', ['init', 'connect', 'compass:dev', 'watch']
