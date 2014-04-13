@@ -116,7 +116,7 @@ module.exports = (grunt) ->
                 'max_line_length':
                     'level': 'ignore'
                 'indentation':
-                    'value': 4
+                    'value': 2
                     'level': 'error'
             dev: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**']
 
@@ -190,7 +190,6 @@ module.exports = (grunt) ->
                 '<%= pkg.app %>/assets/js/main-built.js'
                 '<%= pkg.app %>/assets/js/main-built.js.map'
                 '<%= pkg.app %>/assets/js/main-built.js.src'
-                'node_modules'
             ]
         copy:
             release:

@@ -35,7 +35,7 @@
     "express": "~3.2.6",
     "grunt": "~0.4.2",
     "bower": "~0.9.2",
-    "grunt-coffeelint": "0.0.8",
+    "grunt-coffeelint": "0.0.10",
     "phantomjs": "~1.9.2-6",
     "grunt-mocha-phantomjs": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
