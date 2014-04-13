@@ -32,7 +32,8 @@
     "phantomjs": "~1.9.2-6",
     "grunt-mocha-phantomjs": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-html-validation": "~0.1.12"
+    "grunt-html-validation": "~0.1.12",
+    "uuid": "^1.4.1"
   },
   "optionalDependencies": {},
   "scripts": {
