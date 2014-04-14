@@ -220,7 +220,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'release', () ->
     grunt.log.writeln 'deploy project'
     (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
-    grunt.task.run ['compass:dev', 'requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']
+    grunt.task.run ['compass:dev', 'coffee:app', 'requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']
     grunt.file.mkdir project_config.output + '/assets/js'
     grunt.task.run 'copy:release'
     grunt.task.run 'htmlmin:index'
