@@ -5,5 +5,3 @@ node_js:
 before_install:
   - gem update --system
   - gem install compass
-
-before_script: grunt release
