@@ -74,7 +74,7 @@ module.exports = (grunt) ->
         options:
           base: '<%= pkg.app %>'
           hostname: '0.0.0.0'
-          port: 4000
+          port: 4500
     watch:
       html:
         files: ['<%= pkg.app %>/*.{html,htm}']
@@ -94,7 +94,7 @@ module.exports = (grunt) ->
           livereload: true
       coffee:
         files: ['**/*.coffee', '!**/node_modules/**', '!**/vendor/**'],
-        tasks: ['coffeelint', 'coffee']
+        tasks: ['coffee']
       handlebars:
         files: '<%= pkg.app %>/**/*.handlebars',
         tasks: ['handlebars']

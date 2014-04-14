@@ -9,7 +9,7 @@
     "modernizr": "~2.7.2",
     "requirejs": "~2.1.11",
     "underscore-amd": "~1.5.2",
-    "require-handlebars-plugin": "~0.8.0"
+    "require-handlebars-plugin": "~0.4.0"
   },
   "ignore": [
     "**/.*",
