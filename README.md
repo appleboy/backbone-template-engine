@@ -10,3 +10,45 @@
 * A lightweight web server listen to 3000 port (Using [Node Express Framework](http://expressjs.com/)).
 * Support JavaScript Task Runner [GruntJS](http://gruntjs.com/)
 * Support JavaScript test framework [Mocha](http://visionmedia.github.io/mocha/)
+* Support The streaming build system [GulpJS](http://gulpjs.com)
+
+## Installation
+
+Please install node.js first (>0.10) and [bower](http://bower.io/) package manager
+
+```bash
+$ npm install
+$ bower install
+```
+
+Start App
+
+```bash
+$ npm start
+```
+
+Excuting above command will output the following message.
+
+```
+[gulp] Using gulpfile /home/repo/backbone-template-engine/gulpfile.js
+[gulp] Starting 'clean'...
+[gulp] Starting 'connect'...
+[gulp] Server started http://localhost:1337
+[gulp] LiveReload started on port 35729
+[gulp] Finished 'connect' after 13 ms
+[gulp] Starting 'watch'...
+[gulp] Finished 'watch' after 20 ms
+[gulp] Finished 'clean' after 43 ms
+[gulp] Starting 'default'...
+[gulp] Finished 'default' after 24 μs
+```
+
+Open browser like chrome or firefox and enter http://localhost:1337 URL.
+
+# Testing
+
+Simple command:
+
+```
+$ npm test
+```
