@@ -5,7 +5,7 @@ module.exports = (grunt) ->
 
   project_config =
     app: 'app'
-    output: 'output'
+    dist: 'dist'
 
   # Project configuration
   grunt.initConfig
@@ -59,7 +59,7 @@ module.exports = (grunt) ->
           ###
           appDir: "<%= pkg.app %>/"
           baseUrl: "assets/js/"
-          dir: "<%= pkg.output %>"
+          dir: "<%= pkg.dist %>"
           name: "main"
           mainConfigFile: '<%= pkg.app %>/assets/js/main.js'
           preserveLicenseComments: false
@@ -128,10 +128,10 @@ module.exports = (grunt) ->
       release:
         options:
           force: true
-          sassDir: '<%= pkg.output %>/assets/sass'
-          cssDir: '<%= pkg.output %>/assets/css'
-          imagesDir: '<%= pkg.output %>/assets/images'
-          javascriptsDir: '<%= pkg.output %>/assets/js'
+          sassDir: '<%= pkg.dist %>/assets/sass'
+          cssDir: '<%= pkg.dist %>/assets/css'
+          imagesDir: '<%= pkg.dist %>/assets/images'
+          javascriptsDir: '<%= pkg.dist %>/assets/js'
           outputStyle: 'compressed'
           relativeAssets: true
           noLineComments: true
@@ -140,9 +140,9 @@ module.exports = (grunt) ->
       release:
         report: 'gzip'
         expand: true
-        cwd: '<%= pkg.output %>/assets/css'
+        cwd: '<%= pkg.dist %>/assets/css'
         src: ['*.css']
-        dest: '<%= pkg.output %>/assets/css'
+        dest: '<%= pkg.dist %>/assets/css'
     coffee:
       app:
         expand: true,
@@ -161,17 +161,16 @@ module.exports = (grunt) ->
     clean:
       options:
         force: true
-      js: '<%= pkg.output %>/assets/js'
+      js: '<%= pkg.dist %>/assets/js'
       release: [
-        '<%= pkg.output %>/build.txt'
-        '<%= pkg.output %>/assets/coffee'
-        '<%= pkg.output %>/assets/sass'
-        '<%= pkg.output %>/assets/config.rb'
-        '<%= pkg.output %>/assets/vendor'
-        '<%= pkg.output %>/assets/templates'
+        '<%= pkg.dist %>/build.txt'
+        '<%= pkg.dist %>/assets/coffee'
+        '<%= pkg.dist %>/assets/sass'
+        '<%= pkg.dist %>/assets/vendor'
+        '<%= pkg.dist %>/assets/templates'
       ]
       cleanup: [
-        '<%= pkg.output %>'
+        '<%= pkg.dist %>'
         '<%= pkg.app %>/assets/vendor'
         '<%= pkg.app %>/assets/js/main-built.js'
         '<%= pkg.app %>/assets/js/main-built.js.map'
@@ -180,14 +179,14 @@ module.exports = (grunt) ->
     copy:
       release:
         files: [
-          {src: '<%= pkg.app %>/.htaccess', dest: '<%= pkg.output %>/.htaccess'}
-          {src: '<%= pkg.output %>/assets/vendor/requirejs/require.js', dest: '<%= pkg.output %>/assets/js/require.js'}
-          {src: '<%= pkg.app %>/assets/js/main-built.js', dest: '<%= pkg.output %>/assets/js/' + newFilename + '.js'}
+          {src: '<%= pkg.app %>/.htaccess', dest: '<%= pkg.dist %>/.htaccess'}
+          {src: '<%= pkg.dist %>/assets/vendor/requirejs/require.js', dest: '<%= pkg.dist %>/assets/js/require.js'}
+          {src: '<%= pkg.app %>/assets/js/main-built.js', dest: '<%= pkg.dist %>/assets/js/' + newFilename + '.js'}
         ]
     replace:
       release:
-        src: '<%= pkg.output %>/index.html'
-        dest: '<%= pkg.output %>/index.html'
+        src: '<%= pkg.dist %>/index.html'
+        dest: '<%= pkg.dist %>/index.html'
         replacements: [
           {
             from: 'js/main'
@@ -204,7 +203,7 @@ module.exports = (grunt) ->
         collapseWhitespace: true
       index:
         files:
-          '<%= pkg.output %>/index.html': '<%= pkg.app %>/index.html'
+          '<%= pkg.dist %>/index.html': '<%= pkg.app %>/index.html'
 
     validation:
       files:
@@ -221,7 +220,7 @@ module.exports = (grunt) ->
     grunt.log.writeln 'deploy project'
     (grunt.file.exists project_config.app + '/assets/vendor') || grunt.task.run 'bower:install'
     grunt.task.run ['compass:dev', 'coffee:app', 'requirejs:build', 'requirejs:release', 'cssmin:release', 'clean:js']
-    grunt.file.mkdir project_config.output + '/assets/js'
+    grunt.file.mkdir project_config.dist + '/assets/js'
     grunt.task.run 'copy:release'
     grunt.task.run 'htmlmin:index'
     grunt.task.run 'replace:release'

@@ -66,7 +66,6 @@ gulp.task 'lint', ->
 gulp.task 'clean', ->
   gulp.src([
     'dist'
-    'output'
     '.sass-cache'
     'app/assets/js'
     'app/assets/css'
