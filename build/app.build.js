@@ -1,7 +1,7 @@
 ({
   appDir: "../app/",
   baseUrl: "assets/js/",
-  dir: "../output",
+  dir: "../dist",
   name: "main",
   mainConfigFile: "../app/assets/js/main.js",
   preserveLicenseComments: false,

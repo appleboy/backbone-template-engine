@@ -2,8 +2,7 @@
 app/assets/vendor
 app/assets/js
 app/assets/css
-output/
-node_modules/
+node_modules
 validation-status.json
 validation-report.json
 npm-debug.log
