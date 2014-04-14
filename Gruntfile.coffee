@@ -19,11 +19,6 @@ module.exports = (grunt) ->
           callback: (err, stdout, stderr, cb) ->
             console.log('Install bower package compeletely.')
             cb()
-      template:
-        command: 'node node_modules/.bin/handlebars <%= pkg.app %>/assets/tmp/*.handlebars -m -f <%= pkg.app %>/assets/templates/template.js -k each -k if -k unless'
-        options:
-          stdout: true
-          stderr: true
       build:
         command: 'node node_modules/requirejs/bin/r.js -o build/self.build.js'
         options:
@@ -174,12 +169,10 @@ module.exports = (grunt) ->
         '<%= pkg.output %>/assets/config.rb'
         '<%= pkg.output %>/assets/vendor'
         '<%= pkg.output %>/assets/templates'
-        '<%= pkg.output %>/assets/tmp'
       ]
       cleanup: [
         '<%= pkg.output %>'
         '<%= pkg.app %>/assets/vendor'
-        '<%= pkg.app %>/assets/templates/template.js'
         '<%= pkg.app %>/assets/js/main-built.js'
         '<%= pkg.app %>/assets/js/main-built.js.map'
         '<%= pkg.app %>/assets/js/main-built.js.src'
