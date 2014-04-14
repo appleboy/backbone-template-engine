@@ -21,7 +21,8 @@ require.config({
     partialsUrl: '',
     helperDirectory: 'helpers/',
     disableI18n: true
-  }
+  },
+  urlArgs: (new Date()).getTime()
 });
 
 require(['app'], function(App) {
