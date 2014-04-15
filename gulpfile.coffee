@@ -123,26 +123,6 @@ gulp.task 'watch', ['connect'], ->
   gulp.watch 'app/assets/images/**/*', ['images']
   true
 
-# The default task (called when you run `gulp`)
-gulp.task 'default', [
-  'clean'
-  'watch'
-]
-
-gulp.task 'test', ->
-  gulp.src 'test/**/*.js'
-    .pipe mocha
-      reporter: 'spec'
-
-# Build
-gulp.task 'build', [
-  'coffee'
-  'images'
-  'compass'
-  'w3cjs'
-  'copy'
-]
-
 gulp.task 'rjs', ['build'], (cb) ->
   rjs.optimize
     baseUrl: "app/assets/js/"
@@ -160,6 +140,27 @@ gulp.task 'rename', ['rjs'], ->
   gulp.src 'app/assets/vendor/requirejs/require.js'
       .pipe uglify()
       .pipe gulp.dest 'dist/assets/js/'
+
+# testing via mocha tool
+gulp.task 'test', ->
+  gulp.src 'test/**/*.js'
+    .pipe mocha
+      reporter: 'spec'
+
+# The default task (called when you run `gulp`)
+gulp.task 'default', [
+  'clean'
+  'watch'
+]
+
+# Build
+gulp.task 'build', [
+  'coffee'
+  'images'
+  'compass'
+  'w3cjs'
+  'copy'
+]
 
 gulp.task 'release', [
   'build'
