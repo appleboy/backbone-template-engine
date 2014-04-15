@@ -20,6 +20,7 @@ uglify = require 'gulp-uglify'
 minifyCSS = require 'gulp-minify-css'
 htmlmin = require 'gulp-htmlmin'
 replace = require 'gulp-replace'
+mocha = require 'gulp-mocha'
 production = true if gutil.env.env is 'production'
 filename = uuid.v4()
 
@@ -127,6 +128,11 @@ gulp.task 'default', [
   'clean'
   'watch'
 ]
+
+gulp.task 'test', ->
+  gulp.src 'test/**/*.js'
+    .pipe mocha
+      reporter: 'spec'
 
 # Build
 gulp.task 'build', [
