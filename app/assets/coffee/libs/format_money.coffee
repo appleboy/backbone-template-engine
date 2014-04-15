@@ -1,5 +1,5 @@
 define (require, exports, module) ->
-  # http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript/149099#149099
+  # ref: http://goo.gl/1odTEj
 
   format_money = (money, ho, dot, delimiter) ->
     ho        = (if isNaN(ho = Math.abs(ho)) then 0 else ho)
