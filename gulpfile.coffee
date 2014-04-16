@@ -24,37 +24,41 @@ mocha = require 'gulp-mocha'
 production = true if gutil.env.env is 'production'
 filename = uuid.v4()
 
-path =
-  app: 'app/'
-  js: 'app/assets/js/'
-  coffee: 'app/assets/coffee/'
-  sass: 'app/assets/sass/'
-  css: 'app/assets/css/'
+paths =
+  src: 'app'
+  script: 'app/assets/js'
+  coffee: 'app/assets/coffee'
+  sass: 'app/assets/sass'
+  css: 'app/assets/css'
+  images: 'app/assets/images'
+  test: 'test'
+  dist: 'dist'
+  vendor: 'app/assets/vendor'
 
 gulp.task 'coffee', ->
-  gulp.src 'app/assets/coffee/**/*.coffee'
+  gulp.src paths.coffee + '/**/*.coffee'
     .pipe changed 'app/assets/js/',
       extension: '.js'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
     .pipe coffee bare: true
-    .pipe gulp.dest 'app/assets/js/'
+    .pipe gulp.dest paths.script
     .pipe size()
     .pipe connect.reload()
 
 gulp.task 'test_coffee', ->
-  gulp.src 'test/**/*.coffee'
-    .pipe changed 'test/',
+  gulp.src paths.test + '/**/*.coffee'
+    .pipe changed paths.test,
       extension: '.js'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
     .pipe coffee bare: true
-    .pipe gulp.dest 'test/'
+    .pipe gulp.dest paths.test
     .pipe size()
 
 gulp.task 'w3cjs', ->
-  gulp.src 'app/*.html'
-    .pipe changed 'dist'
+  gulp.src paths.src + '/*.html'
+    .pipe changed paths.dist
     .pipe w3cjs()
     .pipe gulpif production, htmlmin(
       removeComments: true
@@ -67,30 +71,33 @@ gulp.task 'w3cjs', ->
     .pipe connect.reload()
 
 gulp.task 'compass', ->
-  gulp.src 'app/assets/sass/**/*.scss'
-    .pipe changed 'app/assets/css/',
+  gulp.src paths.sass + '/**/*.scss'
+    .pipe changed paths.css,
       extension: '.css'
     .pipe compass
-      css: 'app/assets/css'
-      sass: 'app/assets/sass'
-      image: 'app/assets/images'
+      css: paths.css
+      sass: paths.sass
+      image: paths.image
     .on('error', ->)
     .pipe gulpif production, minifyCSS()
-    .pipe gulp.dest 'dist/assets/css/'
+    .pipe gulp.dest paths.dist + '/assets/css/'
     .pipe size()
     .pipe connect.reload()
 
 gulp.task 'copy', ->
-  gulp.src ['app/.htaccess', 'app/favicon.ico', 'app/robots.txt']
+  gulp.src [
+    paths.src + '/.htaccess'
+    paths.src + '/favicon.ico'
+    paths.src + '/robots.txt']
     .pipe gulp.dest 'dist/'
 
 # Clean
 gulp.task 'clean', ->
   gulp.src([
-    'dist'
+    paths.dist
     '.sass-cache'
-    'app/assets/js'
-    'app/assets/css'
+    paths.script
+    paths.css
   ],
     read: false
   ).pipe clean()
@@ -98,13 +105,13 @@ gulp.task 'clean', ->
 
 # Images
 gulp.task 'images', ->
-  gulp.src 'app/assets/images/**/*'
-    .pipe changed 'dist/assets/images'
+  gulp.src paths.images + '/**/*'
+    .pipe changed paths.dist + '/assets/images'
     .pipe cache imagemin
       optimizationLevel: 3
       progressive: true
       interlaced: true
-    .pipe gulp.dest 'dist/assets/images'
+    .pipe gulp.dest paths.dist + '/assets/images'
     .pipe connect.reload()
 
 # Connect
@@ -116,34 +123,34 @@ gulp.task 'connect', ->
 
 gulp.task 'watch', ['connect'], ->
   # Watch files and run tasks if they change
-  gulp.watch 'app/assets/coffee/**/*.coffee', ['coffee']
-  gulp.watch 'test/**/*.coffee', ['test_coffee']
-  gulp.watch 'app/*.html', ['w3cjs']
-  gulp.watch 'app/assets/sass/**/*.scss', ['compass']
-  gulp.watch 'app/assets/images/**/*', ['images']
+  gulp.watch paths.coffee + '/**/*.coffee', ['coffee']
+  gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
+  gulp.watch paths.src + '/*.html', ['w3cjs']
+  gulp.watch paths.sass + '/**/*.scss', ['compass']
+  gulp.watch paths.images + '/**/*', ['images']
   true
 
 gulp.task 'rjs', ['build'], (cb) ->
   rjs.optimize
-    baseUrl: "app/assets/js/"
-    name: "main"
-    out: "app/assets/js/main-built.js"
-    mainConfigFile: "app/assets/js/main.js"
+    baseUrl: paths.script
+    name: 'main'
+    out: paths.script + '/main-built.js'
+    mainConfigFile: paths.script + '/main.js'
     preserveLicenseComments: false
     , (buildResponse) ->
       cb()
 
 gulp.task 'rename', ['rjs'], ->
-  gulp.src 'app/assets/js/main-built.js'
+  gulp.src paths.script + '/main-built.js'
     .pipe rename 'assets/js/' + filename + '.js'
     .pipe gulp.dest 'dist'
-  gulp.src 'app/assets/vendor/requirejs/require.js'
+  gulp.src paths.vendor + '/requirejs/require.js'
       .pipe uglify()
-      .pipe gulp.dest 'dist/assets/js/'
+      .pipe gulp.dest paths.dist + '/assets/js/'
 
 # testing via mocha tool
 gulp.task 'test', ->
-  gulp.src 'test/**/*.js'
+  gulp.src paths.test + '/**/*.js'
     .pipe mocha
       reporter: 'spec'
 
