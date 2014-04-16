@@ -115,13 +115,19 @@ gulp.task 'images', ->
     .pipe connect.reload()
 
 # Connect
-gulp.task 'connect', ->
+gulp.task 'connect:app', ->
   connect.server
-    root: ['app']
+    root: [paths.src]
     port: 1337
     livereload: true
 
-gulp.task 'watch', ['connect'], ->
+gulp.task 'connect:dist', ->
+  connect.server
+    root: [paths.dist]
+    port: 1338
+    livereload: true
+
+gulp.task 'watch', ['connect:app'], ->
   # Watch files and run tasks if they change
   gulp.watch paths.coffee + '/**/*.coffee', ['coffee']
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
