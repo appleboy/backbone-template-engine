@@ -45,10 +45,16 @@ Excuting above command will output the following message.
 
 Open browser like chrome or firefox and enter http://localhost:1337 URL.
 
-# Testing
+# Test
 
-Simple command:
+To test source project, install the project dependencies once:
 
+```bash
+$ npm install
 ```
+
+Then run the tests:
+
+```bash
 $ npm test
 ```
