@@ -21,6 +21,7 @@ minifyCSS = require 'gulp-minify-css'
 htmlmin = require 'gulp-htmlmin'
 replace = require 'gulp-replace'
 mocha = require 'gulp-mocha'
+runs = require 'run-sequence'
 production = true if gutil.env.env is 'production'
 filename = uuid.v4()
 
@@ -161,10 +162,11 @@ gulp.task 'test', ->
       reporter: 'spec'
 
 # The default task (called when you run `gulp`)
-gulp.task 'default', [
-  'clean'
-  'watch'
-]
+gulp.task 'default', (cb) ->
+  runs(
+    ['coffee', 'compass']
+    'watch'
+    cb)
 
 # Build
 gulp.task 'build', [
@@ -175,8 +177,8 @@ gulp.task 'build', [
   'copy'
 ]
 
-gulp.task 'release', [
-  'build'
-  'rjs'
-  'rename'
-]
+gulp.task 'release', (cb) ->
+  runs(
+    'clean'
+    ['build', 'rjs', 'rename']
+    cb)
