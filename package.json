@@ -60,8 +60,8 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp release",
-    "gulp": "bower install && gulp release --env production && gulp test",
-    "test": "grunt release && mocha --reporter spec"
+    "grunt": "grunt release && mocha --reporter spec",
+    "test": "bower install && gulp release --env production && gulp test"
   },
   "engines": {
     "node": ">= 0.10.0"
