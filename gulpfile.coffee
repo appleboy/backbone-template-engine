@@ -177,8 +177,8 @@ gulp.task 'build', [
   'copy'
 ]
 
-gulp.task 'release', (cb) ->
-  runs(
-    'clean'
-    ['build', 'rjs', 'rename']
-    cb)
+gulp.task 'release', [
+  'build'
+  'rjs'
+  'rename'
+]
