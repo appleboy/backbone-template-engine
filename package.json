@@ -38,7 +38,7 @@
     "gulp-coffee": "^1.4.1",
     "gulp-w3cjs": "^0.1.2",
     "gulp-clean": "^0.2.4",
-    "gulp": "^3.6.0",
+    "gulp": "^3.6.1",
     "gulp-size": "^0.3.0",
     "gulp-coffeelint": "^0.3.2",
     "gulp-compass": "^1.1.8",
