@@ -11,4 +11,8 @@ before_install:
   - gem update --system
   - gem install compass
 
+env:
+  global:
+    - REPO="git@github.com:appleboy/backbone-template-engine.git"
+
 after_success: build/after_success.sh
