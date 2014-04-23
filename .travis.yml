@@ -14,5 +14,6 @@ before_install:
 env:
   global:
     - REPO="git@github.com:appleboy/backbone-template-engine.git"
+    - secure: "KYM7ImK6KOrV6NXqZsISEkQ3AIE8ozAMbfRDofW7XiSjrtFzQJeEkMZH0i4w+dhzcJbtp5HLsDXGpOgLebt0Ei0VdfmKrZoCWl6tylfLDMbPT55yzXUYrzbEllZrm6Vdkp9tQpocu+jthkJ7MpwJXvYDjzh6qj6PnDAKUuqFdak="
 
 after_success: build/after_success.sh
