@@ -26,3 +26,4 @@ EOF
 openssl aes-256-cbc -k "$secret" -in build/deploy-key.enc -d -a -out ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa # this key should have push access
 echo -e ">>> Current Repo:$REPO --- Travis Branch:$TRAVIS_BRANCH"
+./build/deploy.sh
