@@ -3,7 +3,7 @@
 
 git remote set-url origin $REPO.git
 git config --global user.email "appleboy@wu-boy.com"
-git config --global user.name "Bo-Yi Wu (via TravisCI)"
+git config --global user.name "Bo-Yi Wu"
 mkdir -p ~/.ssh
 cat >> ~/.ssh/config <<EOF
 Host *
