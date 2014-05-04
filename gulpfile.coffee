@@ -109,7 +109,6 @@ gulp.task 'images', ->
   gulp.src paths.images + '/**/*'
     .pipe changed paths.dist + '/assets/images'
     .pipe cache imagemin
-      optimizationLevel: 3
       progressive: true
       interlaced: true
     .pipe gulp.dest paths.dist + '/assets/images'
@@ -179,6 +178,5 @@ gulp.task 'build', [
 
 gulp.task 'release', (cb) ->
   runs(
-    'clean'
     ['build', 'rjs', 'rename']
     cb)

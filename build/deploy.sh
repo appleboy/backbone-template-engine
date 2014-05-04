@@ -10,7 +10,7 @@ echo "not deploying"
   exit 1
 fi
 npm i
-# for gh-pages
+# remove dist folder for gh-pages
 rm -rf dist
 # XXX: use --reference when not in shallow clone
 #git clone $REPO --reference . -b gh-pages _public
