@@ -87,6 +87,7 @@ gulp.task 'compass', ->
 
 gulp.task 'copy', ->
   gulp.src [
+    paths.src + '/index.html'
     paths.src + '/.htaccess'
     paths.src + '/favicon.ico'
     paths.src + '/robots.txt']
