@@ -21,6 +21,9 @@ rm -rf app/assets/js
 #git clone $REPO --reference . -b gh-pages _public
 git clone $REPO --depth 1 -b gh-pages dist
 
+# remove cache files
+rm -rf dist/assets/js
+
 REV=`git describe --always`
 BUILD=git-$REV ./node_modules/.bin/bower install && ./node_modules/.bin/gulp release --env production
 cd dist
