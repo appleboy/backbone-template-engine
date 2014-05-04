@@ -12,6 +12,8 @@ fi
 npm i
 # remove dist folder for gh-pages
 rm -rf dist
+rm -rf app/assets/css
+rm -rf app/assets/js
 # XXX: use --reference when not in shallow clone
 #git clone $REPO --reference . -b gh-pages _public
 git clone $REPO --depth 1 -b gh-pages dist
