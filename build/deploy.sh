@@ -9,17 +9,23 @@ if [ `git rev-list HEAD...$upstream/master --count` -ne 0 ]; then
 echo "not deploying"
   exit 1
 fi
+
 npm i
+
 # remove dist folder for gh-pages
 rm -rf dist
 rm -rf app/assets/css
 rm -rf app/assets/js
+
 # XXX: use --reference when not in shallow clone
 #git clone $REPO --reference . -b gh-pages _public
 git clone $REPO --depth 1 -b gh-pages dist
 
+# remove cache files
 rm -rf dist/assets/js
 rm -rf dist/assets/css
+rm -rf dist/assets/index.html
+
 REV=`git describe --always`
 BUILD=git-$REV ./node_modules/.bin/bower install && ./node_modules/.bin/gulp release --env production
 cd dist
