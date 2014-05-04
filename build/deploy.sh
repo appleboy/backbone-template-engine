@@ -22,4 +22,4 @@ cd dist
 git fetch --depth 1 origin master:master
 git add -A .
 echo "regen for $REV" | git commit-tree `git write-tree` -p `git rev-parse HEAD` -p $REV | xargs git reset --hard
-git push origin gh-pages
+git push origin gh-pages -f
