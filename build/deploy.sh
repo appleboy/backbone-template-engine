@@ -24,6 +24,7 @@ git clone $REPO --depth 1 -b gh-pages dist
 # remove cache files
 rm -rf dist/assets/js
 rm -rf dist/assets/css
+rm -rf dist/assets/images
 rm -rf dist/index.html
 
 REV=`git describe --always`
