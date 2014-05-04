@@ -38,7 +38,7 @@ paths =
 
 gulp.task 'coffee', ->
   gulp.src paths.coffee + '/**/*.coffee'
-    .pipe changed 'app/assets/js/',
+    .pipe gulpif !production, changed 'app/assets/js/',
       extension: '.js'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
@@ -49,7 +49,7 @@ gulp.task 'coffee', ->
 
 gulp.task 'test_coffee', ->
   gulp.src paths.test + '/**/*.coffee'
-    .pipe changed paths.test,
+    .pipe gulpif !production, changed paths.test,
       extension: '.js'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
@@ -59,7 +59,7 @@ gulp.task 'test_coffee', ->
 
 gulp.task 'w3cjs', ->
   gulp.src paths.src + '/*.html'
-    .pipe changed paths.dist
+    .pipe gulpif !production, changed paths.dist
     .pipe w3cjs()
     .pipe gulpif production, htmlmin(
       removeComments: true
@@ -73,7 +73,7 @@ gulp.task 'w3cjs', ->
 
 gulp.task 'compass', ->
   gulp.src paths.sass + '/**/*.scss'
-    .pipe changed paths.css,
+    .pipe gulpif !production, changed paths.css,
       extension: '.css'
     .pipe compass
       css: paths.css
