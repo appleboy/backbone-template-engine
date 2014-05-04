@@ -1,9 +1,0 @@
-.sass-cache
-app/assets/vendor
-app/assets/js
-app/assets/css
-node_modules
-validation-status.json
-validation-report.json
-npm-debug.log
-dist
