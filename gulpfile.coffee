@@ -106,7 +106,7 @@ gulp.task 'clean', ->
 
 # Images
 gulp.task 'images', ->
-  gulp.src paths.images + '/**/*'
+  gulp.src paths.images + '/**/*.{jpg,jpeg,png,gif}'
     .pipe changed paths.dist + '/assets/images'
     .pipe cache imagemin
       progressive: true
@@ -133,7 +133,7 @@ gulp.task 'watch', ['connect:app'], ->
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
   gulp.watch paths.src + '/*.html', ['w3cjs']
   gulp.watch paths.sass + '/**/*.scss', ['compass']
-  gulp.watch paths.images + '/**/*', ['images']
+  gulp.watch paths.images + '/**/*.{jpg,jpeg,png,gif}', ['images']
   true
 
 gulp.task 'rjs', ['build'], (cb) ->
