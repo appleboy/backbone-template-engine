@@ -38,7 +38,7 @@ paths =
 
 gulp.task 'coffee', ->
   gulp.src paths.coffee + '/**/*.coffee'
-    .pipe gulpif !production, changed 'app/assets/js/',
+    .pipe gulpif !production, changed paths.script,
       extension: '.js'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
