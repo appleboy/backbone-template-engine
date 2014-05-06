@@ -8,8 +8,8 @@ require.config
     hbs: '../vendor/require-handlebars-plugin/hbs'
 
   pragmasOnSave:
-    excludeHbsParser : true,
-    excludeHbs: true,
+    excludeHbsParser: true
+    excludeHbs: true
     excludeAfterBuild: true
 
   hbs:
