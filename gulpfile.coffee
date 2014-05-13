@@ -151,8 +151,8 @@ gulp.task 'rename', ['rjs'], ->
     .pipe rename 'assets/js/' + filename + '.js'
     .pipe gulp.dest 'dist'
   gulp.src paths.vendor + '/requirejs/require.js'
-      .pipe uglify()
-      .pipe gulp.dest paths.dist + '/assets/js/'
+    .pipe uglify()
+    .pipe gulp.dest paths.dist + '/assets/js/'
 
 # testing via mocha tool
 gulp.task 'test', ->
