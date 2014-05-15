@@ -67,7 +67,7 @@ gulp.task 'w3cjs', ->
     )
     .pipe gulpif production, replace 'js/main', 'js/' + filename
     .pipe gulpif production, replace 'vendor/requirejs/require.js', 'js/require.js'
-    .pipe gulp.dest 'dist'
+    .pipe gulp.dest paths.dist
     .pipe size()
     .pipe connect.reload()
 
@@ -90,7 +90,7 @@ gulp.task 'copy', ->
     paths.src + '/.htaccess'
     paths.src + '/favicon.ico'
     paths.src + '/robots.txt']
-    .pipe gulp.dest 'dist/'
+    .pipe gulp.dest paths.dist
 
 # Clean
 gulp.task 'clean', ->
