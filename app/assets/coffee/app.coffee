@@ -1,11 +1,11 @@
 # Filename: app.js
 define [
-  'jquery',
-  'underscore',
-  'backbone',
-  'hbs!../templates/index',
-  'libs/format_money',
-  'modernizr',
+  'jquery'
+  'underscore'
+  'backbone'
+  'hbs!templates/index'
+  'libs/format_money'
+  'modernizr'
   'libs/console'
   ], ($, _, Backbone, template, format_money) ->
   initialize = ->

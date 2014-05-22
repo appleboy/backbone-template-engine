@@ -6,6 +6,7 @@ require.config
     backbone: '../vendor/backbone-amd/backbone'
     modernizr: '../vendor/modernizr/modernizr'
     hbs: '../vendor/require-handlebars-plugin/hbs'
+    templates: '../templates'
 
   pragmasOnSave:
     excludeHbsParser: true
