@@ -44,7 +44,6 @@ gulp.task 'coffee', ->
     .pipe coffeelint.reporter()
     .pipe coffee bare: true
     .pipe gulp.dest paths.script
-    .pipe size()
     .pipe connect.reload()
 
 gulp.task 'test_coffee', ->
@@ -55,7 +54,6 @@ gulp.task 'test_coffee', ->
     .pipe coffeelint.reporter()
     .pipe coffee bare: true
     .pipe gulp.dest paths.test
-    .pipe size()
 
 gulp.task 'w3cjs', ->
   gulp.src paths.src + '/*.html'
@@ -68,7 +66,6 @@ gulp.task 'w3cjs', ->
     .pipe gulpif production, replace 'js/main', 'js/' + filename
     .pipe gulpif production, replace 'vendor/requirejs/require.js', 'js/require.js'
     .pipe gulp.dest paths.dist
-    .pipe size()
     .pipe connect.reload()
 
 gulp.task 'compass', ->
@@ -82,7 +79,6 @@ gulp.task 'compass', ->
     .on('error', ->)
     .pipe gulpif production, minifyCSS()
     .pipe gulp.dest paths.dist + '/assets/css/'
-    .pipe size()
     .pipe connect.reload()
 
 gulp.task 'copy', ->
@@ -174,7 +170,11 @@ gulp.task 'build', [
   'compass'
   'w3cjs'
   'copy'
-]
+], ->
+  gulp.src paths.dist + '/**/*'
+    .pipe size
+      showFiles: true,
+      gzip: true
 
 gulp.task 'release', (cb) ->
   runs(
