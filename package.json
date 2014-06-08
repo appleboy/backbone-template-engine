@@ -54,7 +54,8 @@
     "gulp-htmlmin": "~0.1.2",
     "gulp-replace": "~0.2.0",
     "gulp-mocha": "~0.4.1",
-    "run-sequence": "~0.3.6"
+    "run-sequence": "~0.3.6",
+    "gulp-load-plugins": "^0.5.1"
   },
   "optionalDependencies": {},
   "scripts": {

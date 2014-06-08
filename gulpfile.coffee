@@ -2,28 +2,12 @@
 
 uuid = require 'uuid'
 gulp = require 'gulp'
-gutil = require 'gulp-util'
-coffee = require 'gulp-coffee'
-coffeelint = require 'gulp-coffeelint'
-compass = require 'gulp-compass'
-w3cjs = require 'gulp-w3cjs'
-clean = require 'gulp-clean'
-imagemin = require 'gulp-imagemin'
-cache = require 'gulp-cache'
-changed = require 'gulp-changed'
-connect = require 'gulp-connect'
-size = require 'gulp-size'
+$ = require('gulp-load-plugins')()
 rjs = require 'requirejs'
-gulpif = require 'gulp-if'
-rename = require 'gulp-rename'
-uglify = require 'gulp-uglify'
-minifyCSS = require 'gulp-minify-css'
-htmlmin = require 'gulp-htmlmin'
-replace = require 'gulp-replace'
-mocha = require 'gulp-mocha'
 runs = require 'run-sequence'
-production = true if gutil.env.env is 'production'
-filename = uuid.v4()
+minifyCSS = require 'gulp-minify-css'
+production = true if $.util.env.env is 'production'
+filename = require('uuid').v4()
 
 paths =
   src: 'app'
@@ -38,48 +22,48 @@ paths =
 
 gulp.task 'coffee', ->
   gulp.src paths.coffee + '/**/*.coffee'
-    .pipe gulpif !production, changed paths.script,
+    .pipe $.if !production, $.changed paths.script,
       extension: '.js'
-    .pipe coffeelint()
-    .pipe coffeelint.reporter()
-    .pipe coffee bare: true
+    .pipe $.coffeelint()
+    .pipe $.coffeelint.reporter()
+    .pipe $.coffee bare: true
     .pipe gulp.dest paths.script
-    .pipe connect.reload()
+    .pipe $.connect.reload()
 
 gulp.task 'test_coffee', ->
   gulp.src paths.test + '/**/*.coffee'
-    .pipe gulpif !production, changed paths.test,
+    .pipe $.if !production, $.changed paths.test,
       extension: '.js'
-    .pipe coffeelint()
-    .pipe coffeelint.reporter()
-    .pipe coffee bare: true
+    .pipe $.coffeelint()
+    .pipe $.coffeelint.reporter()
+    .pipe $.coffee bare: true
     .pipe gulp.dest paths.test
 
 gulp.task 'w3cjs', ->
   gulp.src paths.src + '/*.html'
-    .pipe gulpif !production, changed paths.dist
-    .pipe w3cjs()
-    .pipe gulpif production, htmlmin(
+    .pipe $.if !production, $.changed paths.dist
+    .pipe $.w3cjs()
+    .pipe $.if production, $.htmlmin(
       removeComments: true
       collapseWhitespace: true
     )
-    .pipe gulpif production, replace 'js/main', 'js/' + filename
-    .pipe gulpif production, replace 'vendor/requirejs/require.js', 'js/require.js'
+    .pipe $.if production, $.replace 'js/main', 'js/' + filename
+    .pipe $.if production, $.replace 'vendor/requirejs/require.js', 'js/require.js'
     .pipe gulp.dest paths.dist
-    .pipe connect.reload()
+    .pipe $.connect.reload()
 
 gulp.task 'compass', ->
   gulp.src paths.sass + '/**/*.scss'
-    .pipe gulpif !production, changed paths.css,
+    .pipe $.if !production, $.changed paths.css,
       extension: '.css'
-    .pipe compass
+    .pipe $.compass
       css: paths.css
       sass: paths.sass
       image: paths.image
     .on('error', ->)
-    .pipe gulpif production, minifyCSS()
+    .pipe $.if production, minifyCSS()
     .pipe gulp.dest paths.dist + '/assets/css/'
-    .pipe connect.reload()
+    .pipe $.connect.reload()
 
 gulp.task 'copy', ->
   gulp.src [
@@ -97,28 +81,28 @@ gulp.task 'clean', ->
     paths.css
   ],
     read: false
-  ).pipe clean()
+  ).pipe $.clean()
 
 
 # Images
 gulp.task 'images', ->
   gulp.src paths.images + '/**/*.{jpg,jpeg,png,gif}'
-    .pipe changed paths.dist + '/assets/images'
-    .pipe cache imagemin
+    .pipe $.changed paths.dist + '/assets/images'
+    .pipe $.cache $.imagemin
       progressive: true
       interlaced: true
     .pipe gulp.dest paths.dist + '/assets/images'
-    .pipe connect.reload()
+    .pipe $.connect.reload()
 
 # Connect
 gulp.task 'connect:app', ->
-  connect.server
+  $.connect.server
     root: [paths.src]
     port: 1337
     livereload: true
 
 gulp.task 'watch', ['connect:app'], ->
-  # Watch files and run tasks if they change
+  # Watch files and run tasks when they change
   gulp.watch paths.coffee + '/**/*.coffee', ['coffee']
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
   gulp.watch paths.src + '/*.html', ['w3cjs']
@@ -136,16 +120,16 @@ gulp.task 'rjs', ['build'], (cb) ->
 
 gulp.task 'rename', ['rjs'], ->
   gulp.src paths.script + '/main-built.js'
-    .pipe rename 'assets/js/' + filename + '.js'
+    .pipe $.rename 'assets/js/' + filename + '.js'
     .pipe gulp.dest 'dist'
   gulp.src paths.vendor + '/requirejs/require.js'
-    .pipe uglify()
+    .pipe $.uglify()
     .pipe gulp.dest paths.dist + '/assets/js/'
 
-# testing via mocha tool
+# testing via $.mocha tool
 gulp.task 'test', ->
   gulp.src paths.test + '/**/*.js'
-    .pipe mocha
+    .pipe $.mocha
       reporter: 'spec'
 
 # The default task (called when you run `gulp`)
@@ -164,7 +148,7 @@ gulp.task 'build', [
   'copy'
 ], ->
   gulp.src paths.dist + '/**/*'
-    .pipe size
+    .pipe $.size
       showFiles: true,
       gzip: true
 
