@@ -1,10 +1,9 @@
 'use strict'
 
-uuid = require 'uuid'
 gulp = require 'gulp'
-$ = require('gulp-load-plugins')()
 rjs = require 'requirejs'
 runs = require 'run-sequence'
+$ = require('gulp-load-plugins')()
 minifyCSS = require 'gulp-minify-css'
 production = true if $.util.env.env is 'production'
 filename = require('uuid').v4()
@@ -102,7 +101,7 @@ gulp.task 'connect:app', ->
     livereload: true
 
 gulp.task 'watch', ['connect:app'], ->
-  # Watch files and run tasks when they change
+  # run tasks automatically when files change
   gulp.watch paths.coffee + '/**/*.coffee', ['coffee']
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
   gulp.watch paths.src + '/*.html', ['w3cjs']
@@ -156,3 +155,5 @@ gulp.task 'release', (cb) ->
   runs(
     ['build', 'rjs', 'rename']
     cb)
+
+module.exports = gulp
