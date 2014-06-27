@@ -81,7 +81,6 @@ gulp.task 'clean', require('del').bind null, [
     paths.css
   ]
 
-
 # Images
 gulp.task 'images', ->
   gulp.src paths.images + '/**/*.{jpg,jpeg,png,gif}'
