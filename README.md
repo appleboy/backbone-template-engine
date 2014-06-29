@@ -32,27 +32,26 @@ $ npm start
 Excuting above command will output the following message.
 
 ```
-[16:32:54] Requiring external module coffee-script/register
-[16:32:55] Using gulpfile /home/git/backbone-template-engine/gulpfile.coffee
-[16:32:55] Starting 'default'...
-[16:32:55] Starting 'coffee'...
-[16:32:55] Starting 'compass'...
-[16:32:55] Finished 'coffee' after 233 ms
-directory app/assets/css/
-   create app/assets/css/ie.css
+> backbone-template-engine@1.0.0 start /xxxx/backbone-template-engine
+> gulp
 
-   create app/assets/css/print.css
+[22:46:39] Requiring external module coffee-script/register
+[22:46:40] Using gulpfile /xxxx/backbone-template-engine/gulpfile.coffee
+[22:46:40] Starting 'default'...
+[22:46:40] Starting 'coffee'...
+[22:46:40] Starting 'compass'...
+[22:46:40] Finished 'coffee' after 459 ms
+directory app/assets/css/ 
+   create app/assets/css/main.css 
 
-   create app/assets/css/screen.css
-
-[16:32:56] Finished 'compass' after 1.23 s
-[16:32:56] Starting 'connect:app'...
-[16:32:56] Server started http://localhost:1337
-[16:32:56] LiveReload started on port 35729
-[16:32:56] Finished 'connect:app' after 27 ms
-[16:32:56] Starting 'watch'...
-[16:32:56] Finished 'watch' after 9.92 ms
-[16:32:56] Finished 'default' after 1.39 s
+[22:46:41] Finished 'compass' after 1.04 s
+[22:46:41] Starting 'connect:app'...
+[22:46:41] Server started http://localhost:1337
+[22:46:41] LiveReload started on port 35729
+[22:46:41] Finished 'connect:app' after 23 ms
+[22:46:41] Starting 'watch'...
+[22:46:41] Finished 'watch' after 16 ms
+[22:46:41] Finished 'default' after 1.32 s
 ```
 
 Open browser like chrome or firefox and enter http://localhost:1337 URL.
