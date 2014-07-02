@@ -8,7 +8,7 @@
 * Includes [Normalize.scss](https://github.com/appleboy/normalize.scss) v3.0.x and v1.1.x.
 * The latest [jQuery](http://jquery.com/) and [Modernizr](http://modernizr.com/) via [Bower](http://bower.io/) package manager.
 * Support [CoffeeScript](http://coffeescript.org/), [RequireJS](http://requirejs.org/), [Compass](http://compass-style.org/), html minification (via [html-minifier](http://kangax.github.io/html-minifier/)).
-* A lightweight web server listen to 1337 port.
+* Support [browser-sync](http://browsersync.io) Keep multiple browsers & devices in sync when building websites.
 * Support JavaScript test framework [Mocha](http://visionmedia.github.io/mocha/)
 * Support The streaming build system [GulpJS](http://gulpjs.com)
 * Support [Backbone.js](http://backbonejs.org) MV* Framework
@@ -41,8 +41,8 @@ Excuting above command will output the following message.
 [22:46:40] Starting 'coffee'...
 [22:46:40] Starting 'compass'...
 [22:46:40] Finished 'coffee' after 459 ms
-directory app/assets/css/ 
-   create app/assets/css/main.css 
+directory app/assets/css/
+   create app/assets/css/main.css
 
 [22:46:41] Finished 'compass' after 1.04 s
 [22:46:41] Starting 'connect:app'...
