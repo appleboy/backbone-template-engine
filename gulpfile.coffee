@@ -101,9 +101,9 @@ gulp.task 'connect:app', ->
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
   gulp.watch paths.src + '/*.html', ['w3cjs', reload]
   gulp.watch paths.sass + '/**/*.scss', ['compass']
-  gulp.watch paths.script + '/**/*.js', [reload]
-  gulp.watch paths.css + '/**/*.css', [reload]
-  gulp.watch paths.images + '/**/*.{jpg,jpeg,png,gif}', [reload]
+  gulp.watch paths.script + '/**/*.js', reload
+  gulp.watch paths.css + '/**/*.css', reload
+  gulp.watch paths.images + '/**/*.{jpg,jpeg,png,gif}', reload
 
 gulp.task 'rjs', ['build'], (cb) ->
   rjs.optimize
