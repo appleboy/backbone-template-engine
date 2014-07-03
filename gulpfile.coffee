@@ -41,10 +41,9 @@ gulp.task 'test_coffee', ->
     .pipe coffeelintTasks()
     .pipe gulp.dest paths.test
 
-gulp.task 'w3cjs', ->
+gulp.task 'html', ->
   gulp.src paths.src + '/*.html'
     .pipe $.if !production, $.changed paths.dist
-    .pipe $.w3cjs()
     .pipe $.if production, $.htmlmin(
       removeComments: true
       collapseWhitespace: true
@@ -99,7 +98,7 @@ gulp.task 'connect:app', ->
   # run tasks automatically when files change
   gulp.watch paths.coffee + '/**/*.coffee', ['coffee']
   gulp.watch paths.test + '/**/*.coffee', ['test_coffee']
-  gulp.watch paths.src + '/*.html', ['w3cjs', reload]
+  gulp.watch paths.src + '/*.html', ['html', reload]
   gulp.watch paths.sass + '/**/*.scss', ['compass']
   gulp.watch paths.script + '/**/*.js', reload
   gulp.watch paths.css + '/**/*.css', reload
@@ -141,7 +140,7 @@ gulp.task 'build', [
   'coffee'
   'images'
   'compass'
-  'w3cjs'
+  'html'
   'copy'
 ], ->
   gulp.src paths.dist + '/**/*'
