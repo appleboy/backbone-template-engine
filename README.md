@@ -32,26 +32,25 @@ $ npm start
 Excuting above command will output the following message.
 
 ```
-> backbone-template-engine@1.0.0 start /xxxx/backbone-template-engine
+> backbone-template-engine@1.0.0 start /home/xxxxx/backbone-template-engine
 > gulp
 
-[22:46:39] Requiring external module coffee-script/register
-[22:46:40] Using gulpfile /xxxx/backbone-template-engine/gulpfile.coffee
-[22:46:40] Starting 'default'...
-[22:46:40] Starting 'coffee'...
-[22:46:40] Starting 'compass'...
-[22:46:40] Finished 'coffee' after 459 ms
+[10:44:39] Requiring external module coffee-script/register
+[10:44:40] Using gulpfile /home/xxxxx/backbone-template-engine/gulpfile.coffee
+[10:44:40] Starting 'default'...
+[10:44:40] Starting 'coffee'...
+[10:44:40] Starting 'compass'...
+[10:44:40] Finished 'coffee' after 156 ms
 directory app/assets/css/
    create app/assets/css/main.css
 
-[22:46:41] Finished 'compass' after 1.04 s
-[22:46:41] Starting 'connect:app'...
-[22:46:41] Server started http://localhost:1337
-[22:46:41] LiveReload started on port 35729
-[22:46:41] Finished 'connect:app' after 23 ms
-[22:46:41] Starting 'watch'...
-[22:46:41] Finished 'watch' after 16 ms
-[22:46:41] Finished 'default' after 1.32 s
+[10:44:41] Finished 'compass' after 565 ms
+[10:44:41] Starting 'connect:app'...
+[10:44:41] Finished 'connect:app' after 18 ms
+[10:44:41] Finished 'default' after 627 ms
+[BS] Local: >>> http://localhost:3001
+[BS] External: >>> http://xxx.xxx.xxx.xxx:3001
+[BS] Serving files from: app
 ```
 
 Open browser like chrome or firefox and enter http://localhost:1337 URL.
