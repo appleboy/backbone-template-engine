@@ -30,7 +30,6 @@
     "gulp-size": "^0.4.0",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^2.2.19",
-    "gulp-w3cjs": "^0.2.0",
     "lazypipe": "^0.2.1",
     "mocha": "^1.18.2",
     "requirejs": "~2.1.11",
