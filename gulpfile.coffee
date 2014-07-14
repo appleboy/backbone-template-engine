@@ -21,6 +21,7 @@ paths =
   test: 'test'
   dist: 'dist'
   vendor: 'app/assets/vendor'
+  hbs: 'app/assets/templates'
 
 coffeelintTasks = lazypipe()
   .pipe $.coffeelint
@@ -102,6 +103,7 @@ gulp.task 'connect:app', ->
   gulp.watch paths.sass + '/**/*.scss', ['compass']
   gulp.watch paths.script + '/**/*.js', reload
   gulp.watch paths.css + '/**/*.css', reload
+  gulp.watch paths.hbs + '/**/*.hbs', reload
   gulp.watch paths.images + '/**/*.{jpg,jpeg,png,gif}', reload
 
 gulp.task 'rjs', ['build'], (cb) ->
