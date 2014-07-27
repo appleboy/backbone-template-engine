@@ -41,7 +41,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp release",
-    "test": "bower install && gulp release --env production && gulp test"
+    "test": "bower install && gulp test_coffee && gulp release --env production && gulp test"
   },
   "engines": {
     "node": ">= 0.10.0"
