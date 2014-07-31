@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/appleboy/backbone-template-engine.png)](http://travis-ci.org/appleboy/backbone-template-engine) [![Build Status](https://drone.io/github.com/appleboy/backbone-template-engine/status.png)](https://drone.io/github.com/appleboy/backbone-template-engine/latest)
 
+##### Hint: [New Slush generator backbone web apps](https://github.com/appleboy/slush-backbone-template) available
+
 ## Features
 
 * The latest [html5boilerplate.com](http://html5boilerplate.com/) source code.
