@@ -33,6 +33,7 @@
     "gulp-util": "^3.0.0",
     "lazypipe": "^0.2.2",
     "mocha": "^1.21.1",
+    "require-dir": "^0.1.0",
     "requirejs": "~2.1.11",
     "run-sequence": "~0.3.6",
     "uuid": "^1.4.1"
