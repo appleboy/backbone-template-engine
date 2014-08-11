@@ -159,6 +159,5 @@ gulp.task 'release', (cb) ->
 try
   require('require-dir')('tasks')
 catch error
-  print error
 
 module.exports = gulp
