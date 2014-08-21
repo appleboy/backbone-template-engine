@@ -1,8 +1,6 @@
 # Backbone-Template-Engine
 
-[![Build Status](https://travis-ci.org/appleboy/backbone-template-engine.png)](http://travis-ci.org/appleboy/backbone-template-engine) [![Build Status](https://drone.io/github.com/appleboy/backbone-template-engine/status.png)](https://drone.io/github.com/appleboy/backbone-template-engine/latest) [![Build Status](http://jenkins.wu-boy.com/buildStatus/icon?job=backbone-template-engine)](http://jenkins.wu-boy.com/job/backbone-template-engine/)
-
-##### Hint: [New Slush generator backbone web apps](https://github.com/appleboy/slush-backbone-template) available
+[![Build Status](https://travis-ci.org/appleboy/backbone-template-engine.png)](http://travis-ci.org/appleboy/backbone-template-engine) [![Build Status](https://drone.io/github.com/appleboy/backbone-template-engine/status.png)](https://drone.io/github.com/appleboy/backbone-template-engine/latest)
 
 ## Features
 
@@ -11,10 +9,10 @@
 * The latest [jQuery](http://jquery.com/) and [Modernizr](http://modernizr.com/) via [Bower](http://bower.io/) package manager.
 * Support [CoffeeScript](http://coffeescript.org/), [RequireJS](http://requirejs.org/), [Compass](http://compass-style.org/), html minification (via [html-minifier](http://kangax.github.io/html-minifier/)).
 * Support [browser-sync](http://browsersync.io) Keep multiple browsers & devices in sync when building websites.
-* Support JavaScript test framework [Mocha](http://visionmedia.github.io/mocha/).
-* Support The streaming build system [GulpJS](http://gulpjs.com).
-* Support [Backbone.js](http://backbonejs.org) MV* Framework.
-* Support [Handlebars.js](http://handlebarsjs.com) Mustache templating language.
+* Support JavaScript test framework [Mocha](http://visionmedia.github.io/mocha/)
+* Support The streaming build system [GulpJS](http://gulpjs.com)
+* Support [Backbone.js](http://backbonejs.org) MV* Framework
+* Support [Handlebars.js](http://handlebarsjs.com) Mustache templating language
 
 ## Installation
 
@@ -62,7 +60,7 @@ Open browser like chrome or firefox and enter http://localhost:1337 URL.
 Execute the following command will generate `dist` folder.
 
 ```bash
-$ npm release
+$ npm run release
 ```
 
 ## Test

@@ -41,7 +41,7 @@
   "optionalDependencies": {},
   "scripts": {
     "start": "gulp",
-    "build": "gulp release",
+    "build": "bower install && gulp release --env production",
     "test": "bower install && gulp test_coffee && gulp release --env production && gulp test"
   },
   "engines": {
