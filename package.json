@@ -38,11 +38,11 @@
     "run-sequence": "^1.0.2",
     "uuid": "^2.0.1"
   },
-  "optionalDependencies": {},
   "scripts": {
     "start": "gulp",
-    "build": "bower install && gulp release --env production",
-    "test": "bower install && gulp test_coffee && gulp release --env production && gulp test"
+    "postinstall": "bower install",
+    "build": "gulp release --env production",
+    "test": "gulp test_coffee && gulp release --env production && gulp test"
   },
   "engines": {
     "node": ">= 0.10.0"
