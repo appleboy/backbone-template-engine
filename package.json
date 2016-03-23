@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "bower": "^1.7.5",
-    "browser-sync": "^1.8.3",
+    "browser-sync": "^2.11.2",
     "coffee-script": "^1.8.0",
     "del": "^1.1.1",
     "gulp": "^3.8.10",
