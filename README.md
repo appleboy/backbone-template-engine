@@ -9,7 +9,7 @@
 * The latest [jQuery](http://jquery.com/) and [Modernizr](http://modernizr.com/) via [Bower](http://bower.io/) package manager.
 * Support [CoffeeScript](http://coffeescript.org/), [RequireJS](http://requirejs.org/), [Compass](http://compass-style.org/), html minification (via [html-minifier](http://kangax.github.io/html-minifier/)).
 * Support [browser-sync](http://browsersync.io) Keep multiple browsers & devices in sync when building websites.
-* Support JavaScript test framework [Mocha](http://visionmedia.github.io/mocha/)
+* Support JavaScript test framework [Mocha](http://mochajs.org/)
 * Support The streaming build system [GulpJS](http://gulpjs.com)
 * Support [Backbone.js](http://backbonejs.org) MV* Framework
 * Support [Handlebars.js](http://handlebarsjs.com) Mustache templating language
